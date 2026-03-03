@@ -1,106 +1,68 @@
-// 📌 Cadena de Texto
+// Tipos de datos básicos en JavaScript (2026 - ES2025+)
+
+// 1. Strings (cadenas de texto)
 const nombre = 'Carlos';
-const parrafo = "Este es un 'parrafo'";
-const parrafo2 = 'Este es un "parrafo"';
-const parrafo3 = 'Este es un \'parrafo\'';
+const parrafo  = "Este es un 'párrafo' con comillas simples dentro";
+const parrafo2 = 'Este es un "párrafo" con comillas dobles dentro';
+const parrafo3 = `Este es un párrafo con interpolación: Hola ${nombre}!`;
 
-// 📌 Numero
-const numero = 4;
-const numero2 = -4.123;
+// 2. Números
+const entero   = 42;
+const decimal  = -3.14159;
+const noSeguro = 9007199254740993; // ¡cuidado! pierde precisión
 
-// 📌 Boleano
-const usuarioConectado = false;
-const mayorQue = 10 > 2;
+// 3. Booleanos
+const conectado = true;
+const esMayor   = 15 > 10;
+console.log('¿Es mayor?', esMayor); // true
 
-console.log(mayorQue);
+// 4. Arrays (arreglos)
+const mezcla = ['hola', 2026, true, { nombre: 'Ana' }, [1, 2, 3]];
+console.log('Array completo:', mezcla);
 
-// 📌 Arrays - Arreglos
-const arreglo = ['texto', 456, true, { propiedad: 'valor' }, [1, 2, 3]];
-console.log(arreglo);
-
-// 📌 Objeto
-const persona = {
-	nombre: 'Carlos',
-	edad: 27,
-	carro: {
-		marca: '...',
-		color: 'negro',
-	},
+// 5. Objetos
+const usuario = {
+  nombre: 'Daniel',
+  edad: 30,
+  ciudad: 'Corrientes',
+  activo: true,
+  direccion: {
+    calle: 'Av. 3 de Abril',
+    numero: 1234
+  }
 };
+console.log('Nombre del usuario:', usuario.nombre);
 
-// 📌 Function
-function hola() {
-	console.log('Hola');
+// 6. Funciones
+function saludar() {
+  console.log('¡Hola desde una función!');
 }
+saludar();
 
-hola()
+// 7. null y undefined
+const valorNulo      = null;       // intencionalmente vacío
+let valorNoDefinido;               // no se le asignó nada
+console.log('null:', valorNulo);
+console.log('undefined:', valorNoDefinido);
 
-// 📌 Null
-// Normalmente lo usamos cuando queremos especificar que un valor sea nulo.
-const miVariable = null
+// 8. Symbol (útil para claves únicas en objetos)
+const idUnico = Symbol('id_secreto');
+console.log(typeof idUnico); // "symbol"
 
-// 📌 Undefined
-// Undefined se usa para indicarnos que un valor no esta definido.
-const miVariable2 = undefined
+// 9. BigInt (para números muy grandes)
+const numeroGrande  = 123456789012345678901234567890n;
+const otroGrande    = BigInt("999999999999999999999999999999");
+console.log(numeroGrande + otroGrande);
 
-/*
-📌 Tipos de datos que podemos guardar en las variables:
-	string - Cadena de Texto
-	number - Numero
-	boolean - Booleano (verdadero o falso)
-	object - Objeto
-	function - Funciones
-	null - Valor nulo
-	undefined - Valor sin definir 
-*/
-
-// Tipos de datos primitivos
-
-// Cadenas de texto (string)
-let myName = "Brais Moure"
-let alias = 'MoureDev'
-let email = `braismoure@mouredev.com`
-
-// Números (number)
-let age = 37 // Entero
-let height = 1.77 // Decimal
-
-// Booleanos (boolean)
-let isTeacher = true
-let isStudent = false
-
-// Undefined
-let undefinedValue
-console.log(undefinedValue)
-
-// Null
-let nullValue = null
-
-// Symbol
-
-let mySymbol = Symbol("mysymbol")
-
-// BigInt
-
-let myBigInt = BigInt(817239871289371986589716389471628379612983761289376129)
-let myBigInt2 = 817239871289371986589716389471628379612983761289376129n
-
-// Mostramos los tipos de datos
-console.log(typeof myName)
-console.log(typeof alias)
-console.log(typeof email)
-
-console.log(typeof age)
-console.log(typeof height)
-
-console.log(typeof isTeacher)
-console.log(typeof isStudent)
-
-console.log(typeof undefinedValue)
-
-console.log(typeof nullValue)
-
-console.log(typeof mySymbol)
-
-console.log(typeof myBigInt)
-console.log(typeof myBigInt2)
+// Mostrar tipos con typeof
+console.log('\n=== TIPOS CON typeof ===');
+console.log('String:',     typeof parrafo3);
+console.log('Number:',     typeof decimal);
+console.log('Boolean:',    typeof conectado);
+console.log('Object:',     typeof usuario);
+console.log('Array:',      typeof mezcla);          // ¡sorpresa! → "object"
+console.log('Function:',   typeof saludar);
+console.log('null:',       typeof valorNulo);       // ¡sorpresa! → "object" (error histórico de JS)
+console.log('undefined:',  typeof valorNoDefinido);
+console.log('Symbol:',     typeof idUnico);
+console.log('BigInt:',     typeof numeroGrande);
