@@ -5,7 +5,7 @@ const projects = [
     category: "frontend",
     description: "Interfaz moderna con catálogo dinámico y carrito en LocalStorage.",
     tech: ["HTML5", "CSS3", "JavaScript"],
-    link: "https://github.com/tu-usuario/proyecto-frontend"
+    link: "https://github.com/danypreisz/proyecto-frontend"
   },
   {
     title: "REST API de Autenticación",
