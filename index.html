@@ -1,12 +1,29 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Hola Mundo con CSS</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Portfolio Dev</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>¡Hola Mundo!</h1>
+
+  <header>
+    <h1>Mi Portafolio</h1>
+    <p>Desarrollador Web • Frontend & Backend</p>
+  </header>
+
+  <main class="container">
+    <nav class="filters">
+      <button class="filter-btn active" data-filter="all">Todos</button>
+      <button class="filter-btn" data-filter="frontend">Frontend</button>
+      <button class="filter-btn" data-filter="backend">Backend</button>
+      <button class="filter-btn" data-filter="fullstack">Fullstack</button>
+    </nav>
+
+    <section id="projects-grid" class="grid"></section>
+  </main>
+
+  <script src="app.js"></script>
 </body>
 </html>
-
