@@ -4,7 +4,7 @@ const projects = [
     title: "Code Golf",
     category: "css",
     description: "CSS Básico.",
-    tech: ["HTML", "CSS", "JavaScript"],
+    tech: ["HTML", "CSS"],
     link: "CSS/CODE GOLF/index.html"
   },
   {
