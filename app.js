@@ -1,7 +1,7 @@
 // Array de datos: agrega o edita tus proyectos aquí
 const projects = [
   {
-    title: "Code Golf",
+    title: "CSS Básico 1",
     category: "css",
     description: "CSS Básico.",
     tech: ["HTML", "CSS"],
