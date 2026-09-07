@@ -9,13 +9,6 @@ const projects = [
     link: "CSS/selectores basicos/index.html"
   },
   {
-    title: "CSS Básico",
-    category: "css",
-    description: "CSS Básico.",
-    tech: ["HTML", "CSS"],
-    link: "CSS/CODE GOLF/index.html"
-  },
-  {
     title: "Especificidad y Cascada",
     category: "css",
     description: "Muestra cómo interactúan la especificidad (el peso numérico de los selectores) y la cascada (el orden de aparición cuando los pesos empatan) sobre un mismo botón.",
