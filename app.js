@@ -71,7 +71,7 @@ function renderProjects(filter = "all") {
       <div>
         <div class="tags">${techTags}</div>
         <div class="card-links">
-          <a href="${project.link}" target="_blank" rel="noopener noreferrer">Ver Código →</a>
+          <a href="${project.link}" target="_blank" rel="noopener noreferrer">Ver Página →</a>
         </div>
       </div>
     `;
