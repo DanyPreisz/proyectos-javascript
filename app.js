@@ -1,6 +1,13 @@
 // Array de datos: agrega o edita tus proyectos aquí
 const projects = [
   {
+    title: "Lista de tareas",
+    category: "frontend",
+    description: "Agregar, completar y borrar.",
+    tech: ["HTML5", "CSS3"],
+    link: "https://github.com/danypreisz/proyecto-frontend"
+  },
+  {
     title: "E-Commerce Landing Page",
     category: "frontend",
     description: "Interfaz moderna con catálogo dinámico y carrito en LocalStorage.",
