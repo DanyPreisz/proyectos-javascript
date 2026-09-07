@@ -1,11 +1,12 @@
 // Array de datos: agrega o edita tus proyectos aquí
 const projects = [
+  
   {
-    title: "CSS Básico 1",
+    title: "Selectores Básicos",
     category: "css",
-    description: "CSS Básico.",
+    description: "Uso de Selectores Básicos.",
     tech: ["HTML", "CSS"],
-    link: "CSS/CODE GOLF/index.html"
+    link: "CSS/selectores basicos/index.html"
   },
   {
     title: "Lista de tareas",
