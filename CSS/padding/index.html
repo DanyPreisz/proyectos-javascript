@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejemplo de Padding</title>
+  <style>
+    /* Buena práctica esencial: hace que el padding no sume ancho extra al width */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: sans-serif;
+      display: flex;
+      gap: 20px;
+      padding: 40px;
+      background-color: #f3f4f6;
+    }
+
+    /* Caja sin relleno: el texto toca directamente los bordes */
+    .sin-padding {
+      width: 250px;
+      background-color: #ffffff;
+      border: 2px solid #ef4444;
+      padding: 0; 
+    }
+
+    /* Caja con relleno: el texto tiene margen interno respirable */
+    .con-padding {
+      width: 250px;
+      background-color: #ffffff;
+      border: 2px solid #10b981;
+      
+      /* 20px arriba/abajo, 24px a los lados */
+      padding: 20px 24px; 
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sin-padding">
+    <h4>Sin Padding</h4>
+    <p>El texto queda pegado directamente al borde, resultando incómodo a la vista.</p>
+  </div>
+
+  <div class="con-padding">
+    <h4>Con Padding</h4>
+    <p>El relleno crea un margen interno limpio entre el texto y el borde de la tarjeta.</p>
+  </div>
+
+</body>
+</html>
