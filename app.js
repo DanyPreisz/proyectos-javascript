@@ -5,7 +5,7 @@ const projects = [
     category: "frontend",
     description: "Agregar, completar y borrar tareas.",
     tech: ["HTML5", "CSS3"],
-    link: "https://github.com/danypreisz/proyecto-frontend"
+    link: "UI y componentes/Lista de tareas (add  complete  delete)/index.html"
   },
   {
     title: "E-Commerce Landing Page",
