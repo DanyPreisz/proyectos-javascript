@@ -1,0 +1,46 @@
+/* ----------------------------------------------------
+   BLOQUE 1: LA CASCADA (Misma especificidad: [0, 0, 1])
+   ---------------------------------------------------- */
+
+/* Regla A: Especificidad [0, 0, 1] (1 etiqueta) */
+button {
+  background-color: gray;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  font-size: 16px;
+}
+
+/* Regla B: Especificidad [0, 0, 1] (1 etiqueta) */
+/* Gana a la Regla A por CASCADA: está escrita después en el archivo */
+button {
+  background-color: navy;
+}
+
+
+/* ----------------------------------------------------
+   BLOQUE 2: ESPECIFICIDAD SUPERIOR (Clases vs Etiquetas)
+   ---------------------------------------------------- */
+
+/* Regla C: Especificidad [0, 1, 0] (1 clase) */
+/* Derrota a Regla B porque [0, 1, 0] > [0, 0, 1] */
+.btn {
+  background-color: teal;
+}
+
+/* Regla D: Especificidad [0, 2, 0] (2 clases) */
+/* Derrota a Regla C porque tiene dos clases */
+.btn.btn-destacado {
+  background-color: darkgreen;
+}
+
+
+/* ----------------------------------------------------
+   BLOQUE 3: MÁXIMA ESPECIFICIDAD (Identificador #id)
+   ---------------------------------------------------- */
+
+/* Regla E: Especificidad [1, 0, 0] (1 id) */
+/* Gana absolutamente a todas las reglas anteriores */
+#btn-submit {
+  background-color: purple;
+}
