@@ -4,7 +4,7 @@ const projects = [
     title: "Lista de tareas",
     category: "frontend",
     description: "Agregar, completar y borrar tareas.",
-    tech: ["HTML5", "CSS3"],
+    tech: ["HTML", "CSS", "JavaScript"],
     link: "UI y componentes/Lista de tareas (add  complete  delete)/index.html"
   },
   {
