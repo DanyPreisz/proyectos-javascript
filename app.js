@@ -1,6 +1,5 @@
 // Array de datos: agrega o edita tus proyectos aquí
 const projects = [
-  
   {
     title: "Selectores Básicos",
     category: "css",
@@ -15,6 +14,14 @@ const projects = [
     tech: ["HTML", "CSS"],
     link: "CSS/especificidad y cascada/index.html"
   }, 
+  {
+    title: "Padding",
+    category: "css",
+    description: "Uso de Padding.",
+    tech: ["HTML", "CSS"],
+    link: "CSS/padding/index.html"
+  },
+  
   {
     title: "Lista de tareas",
     category: "frontend",
