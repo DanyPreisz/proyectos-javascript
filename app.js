@@ -9,7 +9,7 @@ const projects = [
     link: "CSS/selectores basicos/index.html"
   },
   {
-    title: "CSS Básico 1",
+    title: "CSS Básico",
     category: "css",
     description: "CSS Básico.",
     tech: ["HTML", "CSS"],
