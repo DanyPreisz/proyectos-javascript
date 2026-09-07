@@ -5,7 +5,7 @@ const projects = [
     category: "css",
     description: "CSS Básico.",
     tech: ["HTML", "CSS", "JavaScript"],
-    link: "UI y componentes/Lista de tareas (add  complete  delete)/index.html"
+    link: "CSS/CODE GOLF/index.html"
   },
   {
     title: "Lista de tareas",
