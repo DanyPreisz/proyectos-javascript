@@ -1,6 +1,13 @@
 // Array de datos: agrega o edita tus proyectos aquí
 const projects = [
   {
+    title: "Code Golf",
+    category: "css",
+    description: "CSS Básico.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "UI y componentes/Lista de tareas (add  complete  delete)/index.html"
+  },
+  {
     title: "Lista de tareas",
     category: "frontend",
     description: "Agregar, completar y borrar tareas.",
