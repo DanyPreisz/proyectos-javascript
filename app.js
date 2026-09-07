@@ -9,6 +9,13 @@ const projects = [
     link: "CSS/selectores basicos/index.html"
   },
   {
+    title: "CSS Básico 1",
+    category: "css",
+    description: "CSS Básico.",
+    tech: ["HTML", "CSS"],
+    link: "CSS/CODE GOLF/index.html"
+  },
+  {
     title: "Lista de tareas",
     category: "frontend",
     description: "Agregar, completar y borrar tareas.",
