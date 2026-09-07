@@ -3,7 +3,7 @@ const projects = [
   {
     title: "Lista de tareas",
     category: "frontend",
-    description: "Agregar, completar y borrar.",
+    description: "Agregar, completar y borrar tareas.",
     tech: ["HTML5", "CSS3"],
     link: "https://github.com/danypreisz/proyecto-frontend"
   },
