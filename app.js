@@ -17,7 +17,7 @@ const projects = [
   {
     title: "Padding",
     category: "css",
-    description: "Uso de Padding.",
+    description: "El padding (relleno interior) es el espacio transparente que se genera entre el contenido de un elemento (texto, imagen, etc.) y su borde.",
     tech: ["HTML", "CSS"],
     link: "CSS/padding/index.html"
   },
