@@ -3,7 +3,7 @@ const projects = [
   {
     title: "Selectores Básicos",
     category: "css",
-    description: "Uso de Selectores Básicos.",
+    description: "Uso de Selectores Básicos: Universal (*), de tipo o etiqueta, de clase, de identificador.",
     tech: ["HTML", "CSS"],
     link: "CSS/selectores basicos/index.html"
   },
