@@ -16,6 +16,13 @@ const projects = [
     link: "CSS/CODE GOLF/index.html"
   },
   {
+    title: "Especificidad y Cascada",
+    category: "css",
+    description: "Muestra cómo interactúan la especificidad (el peso numérico de los selectores) y la cascada (el orden de aparición cuando los pesos empatan) sobre un mismo botón.",
+    tech: ["HTML", "CSS"],
+    link: "CSS/especificidad y cascada/index.html"
+  }, 
+  {
     title: "Lista de tareas",
     category: "frontend",
     description: "Agregar, completar y borrar tareas.",
