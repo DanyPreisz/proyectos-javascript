@@ -1,0 +1,50 @@
+/* 1. SELECTOR UNIVERSAL (*) */
+/* Afecta a todos los elementos del DOM: ideal para normalizar o resetear */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 2. SELECTOR DE TIPO O ETIQUETA (body, p, button) */
+/* Afecta a cualquier etiqueta HTML de ese tipo */
+body {
+  font-family: sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
+  padding: 20px;
+}
+
+p {
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+/* 3. SELECTOR DE ID (#id) */
+/* Afecta únicamente al elemento que tiene ese ID específico */
+#main-header {
+  background-color: #1a202c;
+  color: #ffffff;
+  padding: 24px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+
+/* 4. SELECTOR DE CLASE (.clase) */
+/* Se aplica a cualquier elemento que use esa clase, permitiendo reutilización */
+.card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.btn {
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
