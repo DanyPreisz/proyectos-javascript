@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demostración de Selectores Combinadores CSS</title>
+    <style>
+        /* --- ESTILOS BÁSICOS DE RESETEO --- */
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; color: #333; padding: 20px; }
+        .dashboard { max-width: 800px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .user-card { border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: 6px; }
+        .badges { display: flex; gap: 5px; margin-top: 10px; }
+        span.badge { padding: 4px 8px; background-color: #e4e6eb; border-radius: 4px; font-size: 0.8rem; }
+        button { padding: 8px 12px; border: none; border-radius: 4px; cursor: pointer; transition: background 0.2s; }
+
+        /* =========================================================
+           --- INTEGRACIÓN DE SELECTORES COMBINADORES ---
+           ========================================================= */
+
+        /* 1. Combinador Descendiente (Espacio en blanco) */
+        /* "Cualquier span que esté DENTRO de un .user-card" */
+        /* Efecto: Ponemos el ID del usuario (#101) en gris y cursiva */
+        .user-card span {
+            color: #777;
+            font-style: italic;
+        }
+
+        /* 2. Combinador Hijo Directo ( > ) */
+        /* "Cualquier párrafo (p) que sea hijo DIRECTO de .user-info" */
+        /* Efecto: Le damos un estilo específico al puesto de trabajo
+           pero NO afecta a los párrafos dentro de .extra-details */
+        .user-info > p {
+            font-weight: bold;
+            color: #1a73e8;
+            margin: 5px 0;
+        }
+
+        /* 3. Combinador Hermano Adyacente ( + ) */
+        /* "El span con clase .badge que sigue INMEDIATAMENTE a otro span .badge" */
+        /* Efecto: Le damos un color diferente a los badges secundarios
+           para resaltar el primero sobre los demás. */
+        span.badge + span.badge {
+            background-color: #34a853; /* Verde para insignias secundarias */
+            color: white;
+        }
+
+        /* 4. Combinador Hermano General ( ~ ) */
+        /* "Cualquier botón que sea hermano de un input con clase .toggle-details" */
+        /* Efecto: Ocultamos el botón "Eliminar" cuando el checkbox de
+           "Mostrar detalles" está activado (simulación lógica). */
+        .toggle-details:checked ~ button.delete-btn {
+            display: none;
+        }
+
+        /* --- Estilos extra para la simulación del punto 4 --- */
+        .extra-details { display: none; margin-top: 10px; padding: 10px; background: #fafafa; border-radius: 4px; }
+        .toggle-details:checked ~ .extra-details { display: block; }
+    </style>
+</head>
+<body>
+
+<div class="dashboard">
+    <h1>Panel de Control de Usuarios</h1>
+
+    <!-- TARJETA DE USUARIO 1 -->
+    <div class="user-card">
+        <div class="user-header">
+            <h3>Juan Pérez <span>(#101)</span></h3> <!-- Combinador Descendiente afecta a este span -->
+        </div>
+
+        <div class="user-info">
+            <p>Desarrollador Senior</p> <!-- Combinador Hijo afecta a este p -->
+            <div class="extra-details">
+                <p>Fecha de ingreso: 2020-01-15</p> <!-- Combinador Hijo NO afecta a este p -->
+            </div>
+        </div>
+
+        <div class="badges">
+            <span class="badge">Admin</span>
+            <span class="badge">Soporte</span> <!-- Combinador Hermano Adyacente afecta a este -->
+            <span class="badge">Ventas</span>  <!-- Combinador Hermano Adyacente afecta a este -->
+        </div>
+
+        <hr>
+
+        <label>Mostrar detalles extra:</label>
+        <input type="checkbox" class="toggle-details"> <!-- Elemento de referencia para Hermano General -->
+        
+        <div class="extra-details">Contenido sensible del desarrollador...</div>
+
+        <div class="actions" style="margin-top: 10px;">
+            <button style="background-color: #e4e6eb;">Editar</button>
+            <button class="delete-btn" style="background-color: #ea4335; color: white;">Eliminar</button> <!-- Combinador Hermano General afecta a este -->
+        </div>
+    </div>
+
+    <!-- TARJETA DE USUARIO 2 -->
+    <div class="user-card">
+        <div class="user-header">
+            <h3>María Gómez <span>(#102)</span></h3>
+        </div>
+        <div class="user-info">
+            <p>Diseñadora UI/UX</p>
+        </div>
+        <div class="badges">
+            <span class="badge">Diseño</span>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
