@@ -41,8 +41,7 @@ const projects = [
     description: "Acordeón / FAQ.",
     tech: ["HTML", "CSS", "JavaScript"],
     link: "UI y componentes/acordeon/index.html"
-  },
-  
+  },  
   {
     title: "Tabs",
     category: "frontend",
