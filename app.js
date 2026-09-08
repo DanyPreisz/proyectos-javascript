@@ -64,6 +64,13 @@ const projects = [
     link: "UI y componentes/tabs/index.html"
   },
   {
+    title: "Dropdown + menú hamburguesa",
+    category: "frontend",
+    description: "Dropdown + menú hamburguesa.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "UI y componentes/menu/index.html"
+  },
+  {
     title: "E-Commerce Landing Page",
     category: "frontend",
     description: "Interfaz moderna con catálogo dinámico y carrito en LocalStorage.",
