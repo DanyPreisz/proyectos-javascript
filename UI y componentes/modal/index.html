@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modal / popup · Vanilla JS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="page">
+      <p class="eyebrow">HTML · CSS · JS vanilla</p>
+      <h1>Modal / popup</h1>
+      <p class="lede">
+        Abrí el diálogo, cerralo con la cruz, con Escape o haciendo clic en el fondo.
+      </p>
+
+      <div class="actions">
+        <button class="btn" type="button" data-open="modal-info">
+          Abrir modal
+        </button>
+        <button class="btn btn-ghost" type="button" data-open="modal-form">
+          Modal con formulario
+        </button>
+      </div>
+    </main>
+
+    <!-- Modal 1: información -->
+    <div
+      class="modal"
+      id="modal-info"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="info-title"
+      hidden
+    >
+      <div class="modal-backdrop" data-close></div>
+      <div class="modal-panel" role="document">
+        <button class="modal-close" type="button" data-close aria-label="Cerrar">
+          ✕
+        </button>
+        <p class="modal-kicker">Ejemplo</p>
+        <h2 id="info-title">Este es un modal</h2>
+        <p>
+          El contenido queda al frente y el resto de la página se bloquea.
+          El foco entra acá adentro hasta que lo cierres.
+        </p>
+        <div class="modal-actions">
+          <button class="btn" type="button" data-close>Entendido</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 2: formulario -->
+    <div
+      class="modal"
+      id="modal-form"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="form-title"
+      hidden
+    >
+      <div class="modal-backdrop" data-close></div>
+      <div class="modal-panel" role="document">
+        <button class="modal-close" type="button" data-close aria-label="Cerrar">
+          ✕
+        </button>
+        <p class="modal-kicker">Suscripción</p>
+        <h2 id="form-title">Dejá tu mail</h2>
+        <form id="demo-form" class="modal-form">
+          <label for="email">Correo</label>
+          <input id="email" type="email" name="email" placeholder="hola@correo.com" required />
+          <div class="modal-actions">
+            <button class="btn btn-ghost" type="button" data-close>Cancelar</button>
+            <button class="btn" type="submit">Enviar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
