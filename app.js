@@ -40,7 +40,7 @@ const projects = [
     category: "frontend",
     description: "Acordeón / FAQ.",
     tech: ["HTML", "CSS", "JavaScript"],
-    link: "UI y componentes/modal/index.html"
+    link: "UI y componentes/acordeon/index.html"
   },
   {
     title: "E-Commerce Landing Page",
