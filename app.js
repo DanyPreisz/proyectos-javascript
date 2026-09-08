@@ -42,6 +42,14 @@ const projects = [
     tech: ["HTML", "CSS", "JavaScript"],
     link: "UI y componentes/acordeon/index.html"
   },
+  
+  {
+    title: "Tabs",
+    category: "frontend",
+    description: "Tabs.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "UI y componentes/tabs/index.html"
+  },
   {
     title: "E-Commerce Landing Page",
     category: "frontend",
