@@ -29,6 +29,13 @@ const projects = [
     link: "CSS/selectorescombinadores/index.html"
   },  
   {
+    title: "Pseudoclases y Pseudoelementos",
+    category: "css",
+    description: "Un formulario de comentarios y una lista de mensajes, integrando las pseudoclases y los pseudoelementos más utilizados en una misma interfaz.",
+    tech: ["HTML", "CSS"],
+    link: "CSS/pseudoclases y pseudoelementos/index.html"
+  },  
+  {
     title: "Lista de tareas",
     category: "frontend",
     description: "Agregar, completar y borrar tareas.",
