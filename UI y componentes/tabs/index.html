@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tabs · Vanilla JS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="page">
+      <p class="eyebrow">HTML · CSS · JS vanilla</p>
+      <h1>Tabs</h1>
+      <p class="lede">
+        Un panel visible a la vez. Clic o flechas izquierda / derecha.
+      </p>
+
+      <div class="tabs" data-tabs>
+        <div class="tablist" role="tablist" aria-label="Secciones">
+          <button
+            class="tab"
+            type="button"
+            role="tab"
+            id="tab-html"
+            aria-controls="panel-html"
+            aria-selected="true"
+            tabindex="0"
+          >
+            HTML
+          </button>
+          <button
+            class="tab"
+            type="button"
+            role="tab"
+            id="tab-css"
+            aria-controls="panel-css"
+            aria-selected="false"
+            tabindex="-1"
+          >
+            CSS
+          </button>
+          <button
+            class="tab"
+            type="button"
+            role="tab"
+            id="tab-js"
+            aria-controls="panel-js"
+            aria-selected="false"
+            tabindex="-1"
+          >
+            JavaScript
+          </button>
+        </div>
+
+        <section
+          class="panel"
+          role="tabpanel"
+          id="panel-html"
+          aria-labelledby="tab-html"
+        >
+          <h2>Marcado</h2>
+          <p>
+            Cada pestaña es un <code>button</code> con <code>role="tab"</code>.
+            El contenido vive en un <code>tabpanel</code> unido con
+            <code>aria-controls</code>.
+          </p>
+        </section>
+
+        <section
+          class="panel"
+          role="tabpanel"
+          id="panel-css"
+          aria-labelledby="tab-css"
+          hidden
+        >
+          <h2>Estilos</h2>
+          <p>
+            La pestaña activa usa <code>aria-selected="true"</code>.
+            El panel que no corresponde lleva <code>hidden</code> y no se muestra.
+          </p>
+        </section>
+
+        <section
+          class="panel"
+          role="tabpanel"
+          id="panel-js"
+          aria-labelledby="tab-js"
+          hidden
+        >
+          <h2>Comportamiento</h2>
+          <p>
+            El JS cambia la pestaña activa, muestra su panel y mueve el foco
+            con las flechas. Home y End van al primero y al último.
+          </p>
+        </section>
+      </div>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
