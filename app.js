@@ -28,6 +28,13 @@ const projects = [
     description: "Agregar, completar y borrar tareas.",
     tech: ["HTML", "CSS", "JavaScript"],
     link: "UI y componentes/Lista de tareas (add  complete  delete)/index.html"
+  },  
+ {
+    title: "Modal / popup",
+    category: "frontend",
+    description: "Modal / popup.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "UI y componentes/modal/index.html"
   },
   {
     title: "E-Commerce Landing Page",
