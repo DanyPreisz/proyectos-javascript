@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dropdown y menú hamburguesa · Vanilla JS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="logo" href="#">Vanilla</a>
+
+      <button
+        class="burger"
+        type="button"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+        aria-controls="nav"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="nav" id="nav">
+        <a href="#inicio">Inicio</a>
+
+        <div class="dropdown" data-dropdown>
+          <button
+            class="dropdown-btn"
+            type="button"
+            aria-expanded="false"
+            aria-haspopup="true"
+          >
+            Proyectos
+            <span class="chevron" aria-hidden="true"></span>
+          </button>
+          <div class="dropdown-menu" hidden>
+            <a href="#tareas">Lista de tareas</a>
+            <a href="#modal">Modal</a>
+            <a href="#acordeon">Acordeón</a>
+            <a href="#tabs">Tabs</a>
+          </div>
+        </div>
+
+        <a href="#docs">Docs</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </header>
+
+    <main class="page">
+      <p class="eyebrow">HTML · CSS · JS vanilla</p>
+      <h1>Dropdown y menú hamburguesa</h1>
+      <p class="lede">
+        En desktop, <strong>Proyectos</strong> abre un submenú. En pantallas
+        chicas, las tres rayas abren la navegación.
+      </p>
+      <ul class="tips">
+        <li>Clic afuera cierra todo.</li>
+        <li>Escape también.</li>
+        <li>El botón cambia <code>aria-expanded</code>.</li>
+      </ul>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
