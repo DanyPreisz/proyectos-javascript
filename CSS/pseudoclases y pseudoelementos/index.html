@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pseudoclases y Pseudoelementos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      padding: 30px;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    /* =========================================================
+       1. PSEUDOCLASES (Estados y posición en el DOM: un solo ':')
+       ========================================================= */
+
+    /* :focus-visible y :valid - Responde al estado del input */
+    input[type="text"]:focus-visible {
+      outline: 2px solid #0056b3;
+      background-color: #fff;
+    }
+
+    input[type="text"]:valid {
+      border: 2px solid #28a745;
+    }
+
+    /* :hover y :active - Interacción del usuario con el botón */
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    button:active {
+      transform: scale(0.97);
+    }
+
+    /* :first-child y :last-child - Selección posicional */
+    .comment-list li:first-child {
+      border-top: 2px solid #007bff;
+    }
+
+    /* :nth-child(even) - Alternar colores en listas (filas pares) */
+    .comment-list li:nth-child(even) {
+      background-color: #eaecef;
+    }
+
+    /* =========================================================
+       2. PSEUDOELEMENTOS (Partes específicas del elemento: dos '::')
+       ========================================================= */
+
+    /* ::placeholder - Estilo del texto provisional del input */
+    input[type="text"]::placeholder {
+      color: #888;
+      font-style: italic;
+    }
+
+    /* ::first-letter - Estiliza la primera letra del párrafo */
+    .comment-text::first-letter {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #007bff;
+    }
+
+    /* ::before - Inserta un ícono/decoración antes del nombre del autor */
+    .author::before {
+      content: "💬 ";
+    }
+
+    /* ::after - Inserta un badge automático al final */
+    .verified::after {
+      content: " ✓ Verificado";
+      font-size: 0.75rem;
+      color: #28a745;
+      font-weight: bold;
+      margin-left: 6px;
+    }
+
+    /* ::selection - Color cuando el usuario resalta texto con el mouse */
+    ::selection {
+      background-color: #ffe066;
+      color: #000;
+    }
+
+    /* Estilos generales del contenedor */
+    ul { list-style: none; padding: 0; margin-top: 20px; }
+    li { background: white; padding: 12px; margin-bottom: 8px; border-radius: 4px; }
+    input[type="text"] { width: 70%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+  </style>
+</head>
+<body>
+
+  <h2>Dejar un comentario</h2>
+
+  <form onsubmit="event.preventDefault()">
+    <!-- Requerido para probar :valid y ::placeholder -->
+    <input type="text" placeholder="Escribe tu mensaje..." required>
+    <button type="submit">Enviar</button>
+  </form>
+
+  <ul class="comment-list">
+    <li>
+      <strong class="author verified">Carlos Díaz</strong>
+      <p class="comment-text">Excelente explicación sobre CSS moderno.</p>
+    </li>
+    <li>
+      <strong class="author">Ana Gómez</strong>
+      <p class="comment-text">Me sirvió mucho para entender la diferencia de sintaxis.</p>
+    </li>
+    <li>
+      <strong class="author verified">Martín Sosa</strong>
+      <p class="comment-text">Todo muy claro y fácil de poner en práctica.</p>
+    </li>
+  </ul>
+
+</body>
+</html>
