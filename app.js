@@ -22,6 +22,13 @@ const projects = [
     link: "CSS/padding/index.html"
   },  
   {
+    title: "Selectores combinadores",
+    category: "css",
+    description: "Un panel de control de usuarios. Cada tipo de selector combinador permite aplicar estilos con precisión quirúrgica basándose en la relación estructural de los elementos HTML, sin necesidad de llenar el HTML de clases innecesarias.",
+    tech: ["HTML", "CSS"],
+    link: "CSS/selectorescombinadores/index.html"
+  },  
+  {
     title: "Lista de tareas",
     category: "frontend",
     description: "Agregar, completar y borrar tareas.",
