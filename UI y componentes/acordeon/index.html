@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Acordeón / FAQ · Vanilla JS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="page">
+      <p class="eyebrow">HTML · CSS · JS vanilla</p>
+      <h1>Acordeón / FAQ</h1>
+      <p class="lede">
+        Un panel abierto a la vez. Clic o Enter / Espacio sobre la pregunta.
+      </p>
+
+      <div class="accordion" data-accordion>
+        <div class="item">
+          <h2>
+            <button
+              class="trigger"
+              type="button"
+              aria-expanded="true"
+              aria-controls="panel-1"
+              id="q-1"
+            >
+              <span>¿Qué es un acordeón?</span>
+              <span class="icon" aria-hidden="true"></span>
+            </button>
+          </h2>
+          <div class="panel" id="panel-1" role="region" aria-labelledby="q-1">
+            <p>
+              Es un bloque de preguntas donde el contenido se muestra u oculta.
+              Sirve para FAQs, menús y detalles que no hace falta ver todos juntos.
+            </p>
+          </div>
+        </div>
+
+        <div class="item">
+          <h2>
+            <button
+              class="trigger"
+              type="button"
+              aria-expanded="false"
+              aria-controls="panel-2"
+              id="q-2"
+            >
+              <span>¿Cómo se abre y se cierra?</span>
+              <span class="icon" aria-hidden="true"></span>
+            </button>
+          </h2>
+          <div class="panel" id="panel-2" role="region" aria-labelledby="q-2" hidden>
+            <p>
+              Al hacer clic en una pregunta se abre su respuesta y se cierran las demás.
+              El atributo <code>hidden</code> saca el panel del flujo y de la navegación.
+            </p>
+          </div>
+        </div>
+
+        <div class="item">
+          <h2>
+            <button
+              class="trigger"
+              type="button"
+              aria-expanded="false"
+              aria-controls="panel-3"
+              id="q-3"
+            >
+              <span>¿Funciona con el teclado?</span>
+              <span class="icon" aria-hidden="true"></span>
+            </button>
+          </h2>
+          <div class="panel" id="panel-3" role="region" aria-labelledby="q-3" hidden>
+            <p>
+              Sí. Tab recorre las preguntas. Enter o Espacio las abre o cierra.
+              Eso sale gratis si el disparador es un <code>button</code>.
+            </p>
+          </div>
+        </div>
+
+        <div class="item">
+          <h2>
+            <button
+              class="trigger"
+              type="button"
+              aria-expanded="false"
+              aria-controls="panel-4"
+              id="q-4"
+            >
+              <span>¿Puedo dejar varios abiertos?</span>
+              <span class="icon" aria-hidden="true"></span>
+            </button>
+          </h2>
+          <div class="panel" id="panel-4" role="region" aria-labelledby="q-4" hidden>
+            <p>
+              En este ejemplo no: se comporta como acordeón clásico.
+              Si querés varios a la vez, sacá el cierre de los otros ítems en el JS.
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
