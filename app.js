@@ -20,8 +20,7 @@ const projects = [
     description: "El padding (relleno interior) es el espacio transparente que se genera entre el contenido de un elemento (texto, imagen, etc.) y su borde.",
     tech: ["HTML", "CSS"],
     link: "CSS/padding/index.html"
-  },
-  
+  },  
   {
     title: "Lista de tareas",
     category: "frontend",
@@ -33,6 +32,13 @@ const projects = [
     title: "Modal / popup",
     category: "frontend",
     description: "Modal / popup.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "UI y componentes/modal/index.html"
+  },  
+  {
+    title: "Acordeón / FAQ",
+    category: "frontend",
+    description: "Acordeón / FAQ.",
     tech: ["HTML", "CSS", "JavaScript"],
     link: "UI y componentes/modal/index.html"
   },
