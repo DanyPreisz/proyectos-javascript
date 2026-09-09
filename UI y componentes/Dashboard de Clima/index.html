@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard de Métricas Ambientales</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --surface: #151c2c;
+      --border: #232f48;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent-blue: #38bdf8;
+      --accent-green: #34d399;
+      --accent-yellow: #fbbf24;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      padding: 1.5rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    /* Header con Flexbox */
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1rem;
+    }
+
+    .refresh-control {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      background: var(--accent-green);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent-green);
+    }
+
+    /* Fila de Tarjetas (KPI) usando Flexbox */
+    .kpi-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .kpi-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      flex: 1 1 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .kpi-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .kpi-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .kpi-sub {
+      font-size: 0.8rem;
+      color: var(--accent-blue);
+    }
+
+    /* Gráficos usando Flexbox */
+    .charts-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .chart-panel {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      flex: 1 1 450px;
+      display: flex;
+      flex-direction: column;
+      min-height: 380px;
+    }
+
+    .chart-panel h3 {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      color: var(--text-main);
+    }
+
+    .chart-wrapper {
+      position: relative;
+      flex-grow: 1;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra Superior -->
+  <header class="dashboard-header">
+    <div>
+      <h2>Dashboard de Telemetría Ambiental</h2>
+      <p style="color: var(--text-muted); font-size: 0.875rem;">Consumiendo API pública de Open-Meteo</p>
+    </div>
+    <div class="refresh-control">
+      <div class="status-dot"></div>
+      <span id="timestamp" style="font-size: 0.85rem; color: var(--text-muted);">Consultando...</span>
+    </div>
+  </header>
+
+  <!-- Métricas Rápidas (KPIs) -->
+  <section class="kpi-container">
+    <div class="kpi-card">
+      <span class="kpi-label">Temperatura Actual</span>
+      <span class="kpi-value" id="kpi-temp">--</span>
+      <span class="kpi-sub">Sensor térmico superficial</span>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-label">Humedad Relativa</span>
+      <span class="kpi-value" id="kpi-humidity">--</span>
+      <span class="kpi-sub">Porcentaje atmosférico</span>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-label">Velocidad del Viento</span>
+      <span class="kpi-value" id="kpi-wind">--</span>
+      <span class="kpi-sub">Medición a 10m de altura</span>
+    </div>
+    <div class="kpi-card">
+      <span class="kpi-label">Presión Barométrica</span>
+      <span class="kpi-value" id="kpi-pressure">--</span>
+      <span class="kpi-sub">Nivel del mar (hPa)</span>
+    </div>
+  </section>
+
+  <!-- Gráficos -->
+  <section class="charts-row">
+    <div class="chart-panel">
+      <h3>Pronóstico Térmico Próximas 24 Horas (°C)</h3>
+      <div class="chart-wrapper">
+        <canvas id="tempLineChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-panel">
+      <h3>Distribución Horaria de Viento (km/h)</h3>
+      <div class="chart-wrapper">
+        <canvas id="windBarChart"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Endpoint público gratuito (latitud y longitud predeterminadas para pruebas)
+    const API_URL = "https://api.open-meteo.com/v1/forecast?latitude=-34.6118&longitude=-58.4173&current=temperature_2m,relative_humidity_2m,surface_pressure,wind_speed_10m&hourly=temperature_2m,wind_speed_10m&forecast_days=2";
+
+    // 1. Inicialización de Chart.js
+    const lineCtx = document.getElementById("tempLineChart").getContext("2d");
+    const barCtx = document.getElementById("windBarChart").getContext("2d");
+
+    // Opciones base compartidas para estilo oscuro
+    const chartBaseOptions = {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { color: "#232f48" }, ticks: { color: "#94a3b8" } },
+        y: { grid: { color: "#232f48" }, ticks: { color: "#94a3b8" } }
+      }
+    };
+
+    const tempChart = new Chart(lineCtx, {
+      type: "line",
+      data: {
+        labels: [],
+        datasets: [{
+          data: [],
+          borderColor: "#38bdf8",
+          backgroundColor: "rgba(56, 189, 248, 0.12)",
+          fill: true,
+          tension: 0.35,
+          borderWidth: 2
+        }]
+      },
+      options: chartBaseOptions
+    });
+
+    const windChart = new Chart(barCtx, {
+      type: "bar",
+      data: {
+        labels: [],
+        datasets: [{
+          data: [],
+          backgroundColor: "#34d399",
+          borderRadius: 4
+        }]
+      },
+      options: chartBaseOptions
+    });
+
+    // 2. Función para obtener y procesar datos
+    async function updateDashboardMetrics() {
+      try {
+        const response = await fetch(API_URL);
+        if (!response.ok) throw new Error("Fallo en la conexión");
+        const data = await response.json();
+
+        // Actualizar KPIs actuales
+        document.getElementById("kpi-temp").textContent = `${data.current.temperature_2m}°C`;
+        document.getElementById("kpi-humidity").textContent = `${data.current.relative_humidity_2m}%`;
+        document.getElementById("kpi-wind").textContent = `${data.current.wind_speed_10m} km/h`;
+        document.getElementById("kpi-pressure").textContent = `${data.current.surface_pressure} hPa`;
+        document.getElementById("timestamp").textContent = `Actualizado: ${new Date().toLocaleTimeString()}`;
+
+        // Procesar datos horarios (próximas 24 horas a partir del índice actual)
+        const times = data.hourly.time.slice(0, 24).map(t => t.slice(11)); // Extrae HH:mm
+        const temps = data.hourly.temperature_2m.slice(0, 24);
+        const winds = data.hourly.wind_speed_10m.slice(0, 24);
+
+        // Actualizar Gráficos
+        tempChart.data.labels = times;
+        tempChart.data.datasets[0].data = temps;
+        tempChart.update();
+
+        windChart.data.labels = times;
+        windChart.data.datasets[0].data = winds;
+        windChart.update();
+
+      } catch (error) {
+        console.error("Error cargando telemetría:", error);
+        document.getElementById("timestamp").textContent = "Error al sincronizar";
+      }
+    }
+
+    // Consulta inicial y actualización periódica (cada 60 segundos)
+    updateDashboardMetrics();
+    setInterval(updateDashboardMetrics, 60000);
+  </script>
+</body>
+</html>
