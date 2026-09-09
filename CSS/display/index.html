@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Demostración de Propiedades Display en CSS</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f4f6;
+      padding: 20px;
+      margin: 0;
+    }
+
+    /* 1. DISPLAY: GRID - Estructura bidimensional general */
+    .page-layout {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 20px;
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    /* 2. DISPLAY: BLOCK - Ocupa todo el ancho disponible y fuerza salto de línea */
+    .product-title {
+      display: block;
+      margin: 0 0 10px 0;
+      color: #111827;
+    }
+
+    .description {
+      display: block;
+      color: #4b5563;
+      margin-bottom: 15px;
+    }
+
+    /* 3. DISPLAY: INLINE - Fluye dentro del texto, no admite width ni height */
+    .price-text {
+      display: inline;
+      color: #6b7280;
+    }
+
+    .price-amount {
+      display: inline;
+      font-weight: bold;
+      color: #059669;
+    }
+
+    /* 4. DISPLAY: INLINE-BLOCK - Fluye en línea pero respeta width, height y paddings */
+    .badge {
+      display: inline-block;
+      background-color: #e0e7ff;
+      color: #3730a3;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      margin-left: 8px;
+    }
+
+    /* 5. DISPLAY: FLEX - Distribución unidimensional (alineación y espaciado) */
+    .actions-bar {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .btn {
+      padding: 10px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .btn-buy {
+      background: #2563eb;
+      color: white;
+    }
+
+    /* 6. DISPLAY: NONE - Elimina el elemento del flujo visual del documento */
+    .out-of-stock-alert {
+      display: none; /* Oculto porque el producto sí tiene stock */
+      background: #fee2e2;
+      color: #991b1b;
+      padding: 8px;
+      border-radius: 4px;
+    }
+
+    /* Estilo auxiliar de la imagen */
+    .product-image {
+      width: 100%;
+      height: 180px;
+      background: #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #9ca3af;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <main class="page-layout"> <!-- display: grid -->
+    
+    <aside class="product-image">
+      [Foto del Producto]
+    </aside>
+
+    <section class="product-info">
+      <h1 class="product-title">Auriculares Inalámbricos Pro</h1> <!-- display: block -->
+      
+      <p class="description"> <!-- display: block -->
+        Cancelación de ruido activa, conectividad Bluetooth 5.3 y batería de larga duración.
+      </p>
+
+      <div>
+        <span class="price-text">Precio:</span> <!-- display: inline -->
+        <span class="price-amount">$199.99</span> <!-- display: inline -->
+        <span class="badge">Envío gratis</span> <!-- display: inline-block -->
+      </div>
+
+      <div class="actions-bar"> <!-- display: flex -->
+        <button class="btn btn-buy">Comprar ahora</button>
+        <button class="btn">Guardar</button>
+      </div>
+
+      <!-- Elemento no visible en el layout -->
+      <div class="out-of-stock-alert"> <!-- display: none -->
+        Sin unidades disponibles en este momento.
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>
