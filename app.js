@@ -88,8 +88,8 @@ const projects = [
     title: "E-Commerce Landing Page",
     category: "frontend",
     description: "Interfaz moderna con catálogo dinámico y carrito en LocalStorage.",
-    tech: ["HTML5", "CSS3", "JavaScript"],
-    link: "https://github.com/danypreisz/proyecto-frontend"
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "UI y componentes/landingpage/index.html"
   },
   {
     title: "REST API de Autenticación",
