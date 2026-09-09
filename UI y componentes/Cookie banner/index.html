@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cookie banner · Vanilla JS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="page">
+      <p class="eyebrow">HTML · CSS · JS vanilla</p>
+      <h1>Cookie banner</h1>
+      <p class="lede">
+        Si no hay una decisión guardada, el aviso aparece abajo.
+        Aceptar o rechazar queda en <code>localStorage</code>.
+      </p>
+
+      <p class="status">Estado actual: <strong id="status">sin decidir</strong></p>
+      <button class="btn btn-ghost" type="button" id="reset">
+        Borrar decisión y mostrar de nuevo
+      </button>
+    </main>
+
+    <div
+      class="banner"
+      id="banner"
+      role="dialog"
+      aria-labelledby="banner-title"
+      aria-describedby="banner-text"
+      hidden
+    >
+      <div class="banner-copy">
+        <h2 id="banner-title">Usamos cookies</h2>
+        <p id="banner-text">
+          Las necesarias hacen funcionar el sitio. Las opcionales nos ayudan a
+          mejorar. Podés aceptar todas o solo las esenciales.
+        </p>
+      </div>
+      <div class="banner-actions">
+        <button class="btn btn-ghost" type="button" data-consent="rejected">
+          Solo esenciales
+        </button>
+        <button class="btn" type="button" data-consent="accepted">
+          Aceptar todas
+        </button>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
