@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minimal Store - E-Commerce Landing Page</title>
+  <style>
+    :root {
+      --primary: #111827;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --bg: #f9fafb;
+      --card-bg: #ffffff;
+      --text: #1f2937;
+      --text-muted: #6b7280;
+      --border: #e5e7eb;
+      --danger: #ef4444;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      z-index: 10;
+    }
+
+    .brand {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .cart-btn {
+      position: relative;
+      background: none;
+      border: 1px solid var(--border);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .cart-badge {
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.75rem;
+      padding: 0.15rem 0.45rem;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 3.5rem 1rem 2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 2.25rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.8px;
+    }
+
+    .hero p {
+      color: var(--text-muted);
+    }
+
+    /* Product Grid */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+    }
+
+    .product-img {
+      width: 100%;
+      height: 180px;
+      background: #f3f4f6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+    }
+
+    .product-details {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .product-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+
+    .product-price {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    .btn-add {
+      margin-top: auto;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 0.65rem;
+      border-radius: 6px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .btn-add:hover {
+      background: var(--accent);
+    }
+
+    /* Cart Sidebar / Drawer */
+    .cart-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 20;
+    }
+
+    .cart-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: -400px;
+      width: 100%;
+      max-width: 380px;
+      height: 100%;
+      background: var(--card-bg);
+      box-shadow: -4px 0 16px rgba(0,0,0,0.1);
+      transition: right 0.3s ease;
+      z-index: 30;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cart-drawer.open {
+      right: 0;
+    }
+
+    .cart-header {
+      padding: 1.25rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .btn-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+
+    .cart-items {
+      padding: 1.25rem;
+      flex-grow: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.75rem;
+    }
+
+    .cart-item-title {
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .cart-item-price {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .cart-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .qty-btn {
+      width: 26px;
+      height: 26px;
+      border: 1px solid var(--border);
+      background: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .btn-remove {
+      background: none;
+      border: none;
+      color: var(--danger);
+      font-size: 0.8rem;
+      cursor: pointer;
+      margin-left: 0.5rem;
+    }
+
+    .cart-footer {
+      padding: 1.25rem;
+      border-top: 1px solid var(--border);
+      background: #fafafa;
+    }
+
+    .cart-total-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .btn-checkout {
+      width: 100%;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 0.75rem;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-checkout:hover {
+      background: var(--accent-hover);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="brand">NovaStore</div>
+    <button class="cart-btn" id="open-cart">
+      <span>Carrito</span>
+      <span class="cart-badge" id="cart-counter">0</span>
+    </button>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Hardware & Gadgets</h1>
+    <p>Componentes modernos y accesorios de alto rendimiento directo a tu escritorio.</p>
+  </section>
+
+  <!-- Product Catalog -->
+  <main class="container">
+    <div class="product-grid" id="product-grid"></div>
+  </main>
+
+  <!-- Cart Backdrop & Sidebar -->
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <aside class="cart-drawer" id="cart-drawer">
+    <div class="cart-header">
+      <h2>Tu Pedido</h2>
+      <button class="btn-close" id="close-cart">&times;</button>
+    </div>
+    
+    <div class="cart-items" id="cart-items">
+      <!-- Items renderizados dinámicamente -->
+    </div>
+
+    <div class="cart-footer">
+      <div class="cart-total-row">
+        <span>Total:</span>
+        <span id="cart-total">$0.00</span>
+      </div>
+      <button class="btn-checkout" id="checkout-btn">Finalizar Compra</button>
+    </div>
+  </aside>
+
+  <script>
+    // 1. Catálogo de productos en memoria
+    const products = [
+      { id: "p1", title: "Teclado Mecánico TKL", price: 85, icon: "⌨️" },
+      { id: "p2", title: "Mouse Inalámbrico Pro", price: 55, icon: "🖱️" },
+      { id: "p3", title: "Auriculares Hi-Fi", price: 120, icon: "🎧" },
+      { id: "p4", title: "Monitor 27'' IPS 144Hz", price: 240, icon: "🖥️" },
+      { id: "p5", title: "Webcam 2K UltraClear", price: 65, icon: "📷" },
+      { id: "p6", title: "Micrófono USB Cardioide", price: 75, icon: "🎙️" }
+    ];
+
+    // 2. Estado persistente del carrito
+    let cart = JSON.parse(localStorage.getItem("store_cart")) || [];
+
+    // 3. Selectores del DOM
+    const productGrid = document.querySelector("#product-grid");
+    const cartCounter = document.querySelector("#cart-counter");
+    const cartDrawer = document.querySelector("#cart-drawer");
+    const cartOverlay = document.querySelector("#cart-overlay");
+    const cartItemsContainer = document.querySelector("#cart-items");
+    const cartTotal = document.querySelector("#cart-total");
+    const openCartBtn = document.querySelector("#open-cart");
+    const closeCartBtn = document.querySelector("#close-cart");
+    const checkoutBtn = document.querySelector("#checkout-btn");
+
+    // 4. Renderizado del catálogo (con data-attributes para delegación)
+    function renderCatalog() {
+      productGrid.innerHTML = products.map((item) => `
+        <article class="product-card">
+          <div class="product-img">${item.icon}</div>
+          <div class="product-details">
+            <h3 class="product-title">${item.title}</h3>
+            <div class="product-price">$${item.price.toFixed(2)}</div>
+            <button class="btn-add" data-id="${item.id}">Agregar al Carrito</button>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    // 5. Renderizado y sincronización del carrito
+    function renderCart() {
+      // Guardar en LocalStorage cada vez que cambie
+      localStorage.setItem("store_cart", JSON.stringify(cart));
+
+      // Actualizar contador total de unidades
+      const totalCount = cart.reduce((acc, item) => acc + item.quantity, 0);
+      cartCounter.textContent = totalCount;
+
+      // Calcular precio total
+      const totalSum = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+      cartTotal.textContent = `$${totalSum.toFixed(2)}`;
+
+      // Renderizar listado de items
+      if (cart.length === 0) {
+        cartItemsContainer.innerHTML = `<p style="color: var(--text-muted); text-align: center; margin-top: 2rem;">El carrito está vacío.</p>`;
+        return;
+      }
+
+      cartItemsContainer.innerHTML = cart.map((item) => `
+        <div class="cart-item">
+          <div>
+            <div class="cart-item-title">${item.title}</div>
+            <div class="cart-item-price">$${item.price} x ${item.quantity} = $${(item.price * item.quantity).toFixed(2)}</div>
+          </div>
+          <div class="cart-controls">
+            <button class="qty-btn" data-action="decrement" data-id="${item.id}">-</button>
+            <span>${item.quantity}</span>
+            <button class="qty-btn" data-action="increment" data-id="${item.id}">+</button>
+            <button class="btn-remove" data-action="remove" data-id="${item.id}">&times;</button>
+          </div>
+        </div>
+      `).join("");
+    }
+
+    // 6. Mutaciones del estado del carrito
+    function addToCart(productId) {
+      const existing = cart.find(item => item.id === productId);
+
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        const product = products.find(p => p.id === productId);
+        if (product) {
+          cart.push({ ...product, quantity: 1 });
+        }
+      }
+
+      renderCart();
+    }
+
+    function updateQuantity(productId, delta) {
+      const item = cart.find(i => i.id === productId);
+      if (!item) return;
+
+      item.quantity += delta;
+      if (item.quantity <= 0) {
+        cart = cart.filter(i => i.id !== productId);
+      }
+
+      renderCart();
+    }
+
+    function removeItem(productId) {
+      cart = cart.filter(i => i.id !== productId);
+      renderCart();
+    }
+
+    // 7. Manejo del cajón lateral (Drawer)
+    function toggleCart(isOpen) {
+      cartDrawer.classList.toggle("open", isOpen);
+      cartOverlay.classList.toggle("open", isOpen);
+    }
+
+    // 8. Event Listeners y Delegación de Eventos
+    productGrid.addEventListener("click", (e) => {
+      const btn = e.target.closest(".btn-add");
+      if (btn) {
+        addToCart(btn.dataset.id);
+      }
+    });
+
+    cartItemsContainer.addEventListener("click", (e) => {
+      const btn = e.target.closest("button");
+      if (!btn) return;
+
+      const { action, id } = btn.dataset;
+      if (action === "increment") updateQuantity(id, 1);
+      if (action === "decrement") updateQuantity(id, -1);
+      if (action === "remove") removeItem(id);
+    });
+
+    openCartBtn.addEventListener("click", () => toggleCart(true));
+    closeCartBtn.addEventListener("click", () => toggleCart(false));
+    cartOverlay.addEventListener("click", () => toggleCart(false));
+
+    checkoutBtn.addEventListener("click", () => {
+      if (cart.length === 0) {
+        alert("Agrega al menos un producto al carrito.");
+        return;
+      }
+      alert("¡Compra procesada con éxito!");
+      cart = [];
+      renderCart();
+      toggleCart(false);
+    });
+
+    // Inicialización al cargar la página
+    renderCatalog();
+    renderCart();
+  </script>
+</body>
+</html>
