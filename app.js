@@ -110,7 +110,7 @@ const projects = [
     category: "frontend",
     description: "Visualización de estadísticas en tiempo real consumiendo APIs públicas.",
     tech: ["JavaScript", "Chart.js", "CSS Flexbox"],
-    link: "https://github.com/tu-usuario/dashboard"
+    link: "UI y componentes/Dashboard de Clima/index.html"
   },
   {
     title: "Microservicio de Notificaciones",
