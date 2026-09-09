@@ -83,6 +83,13 @@ const projects = [
     description: "Toast notifications.",
     tech: ["HTML", "CSS", "JavaScript"],
     link: "UI y componentes/Toast notifications/index.html"
+  },  
+  {
+    title: "Cookie banner",
+    category: "frontend",
+    description: "Banner de cookies.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "UI y componentes/Cookie banner/index.html"
   },
   {
     title: "E-Commerce Landing Page",
