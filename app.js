@@ -36,6 +36,13 @@ const projects = [
     link: "CSS/pseudoclases y pseudoelementos/index.html"
   },  
   {
+    title: "Propiedad Display",
+    category: "css",
+    description: "Este ejemplo integra los valores fundamentales de la propiedad display (block, inline, inline-block, flex, grid y none) en la estructura de una página de producto.",
+    tech: ["HTML", "CSS"],
+    link: "CSS/display/index.html"
+  },  
+  {
     title: "Lista de tareas",
     category: "frontend",
     description: "Agregar, completar y borrar tareas.",
