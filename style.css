@@ -19,16 +19,6 @@ body {
   color: var(--text);
   line-height: 1.5;
   padding-bottom: 3rem;
-  
-  position: absolute;
-  top: -10%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 500px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
-  filter: blur(60px);
-  pointer-events: none;
 }
 
 header {
@@ -50,6 +40,16 @@ header p {
   max-width: 1000px;
   margin: 0 auto;
   padding: 0 1rem;
+
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
 }
 
 .filters {
