@@ -78,6 +78,13 @@ const projects = [
     link: "UI y componentes/menu/index.html"
   },
   {
+    title: "Toast notifications",
+    category: "frontend",
+    description: "Toast notifications.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "UI y componentes/Toast notifications/index.html"
+  },
+  {
     title: "E-Commerce Landing Page",
     category: "frontend",
     description: "Interfaz moderna con catálogo dinámico y carrito en LocalStorage.",
