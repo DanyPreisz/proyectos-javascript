@@ -1,6 +1,13 @@
 // Array de datos: agrega o edita tus proyectos aquí
 const projects = [
   {
+    title: "Decisiones",
+    category: "js",
+    description: "Un ejemplo práctico y autocontenido en HTML que utiliza estructuras de decisión (if, else if, else) para evaluar la edad del usuario y mostrar una respuesta en tiempo real.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "JS/decisiones/index.html"
+  },
+  {
     title: "Curso de Fullstack",
     category: "cursofullstack",
     description: "Curso de desarrollo Fullstack. Cada lección tiene ilustración y audio. El texto aparece cuando hacés clic en el reproductor de esa lección.",
