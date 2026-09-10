@@ -34,6 +34,13 @@ const projects = [
     description: "Box Model (modelo de caja)",
     tech: ["HTML", "CSS"],
     link: "CSS/Box Model/index.html"
+  },    
+  {
+    title: "block, inline, inline-block",
+    category: "css",
+    description: "block, inline, inline-block",
+    tech: ["HTML", "CSS"],
+    link: "CSS/block inline inline block/index.html"
   },  
   {
     title: "Padding",
