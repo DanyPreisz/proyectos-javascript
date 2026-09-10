@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Volver arriba · Vanilla JS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="page">
+      <p class="eyebrow">HTML · CSS · JS vanilla</p>
+      <h1>Volver arriba</h1>
+      <p class="lede">
+        Bajá un poco. Cuando pases los 400px aparece el botón. Clic y volvés al inicio.
+      </p>
+
+      <article class="content">
+        <h2>1. Scroll</h2>
+        <p>
+          El navegador dispara el evento <code>scroll</code>. El JS mira
+          <code>window.scrollY</code> y decide si el botón se ve o no.
+        </p>
+        <h2>2. Umbral</h2>
+        <p>
+          Si el umbral es muy bajo, el botón molesta. 300–500px suele funcionar
+          bien en una página de contenido.
+        </p>
+        <h2>3. Smooth scroll</h2>
+        <p>
+          <code>window.scrollTo({ top: 0, behavior: "smooth" })</code>
+          anima el regreso. Sin librerías.
+        </p>
+        <h2>4. Accesibilidad</h2>
+        <p>
+          El botón tiene <code>aria-label</code>. Cuando está oculto, también
+          queda fuera del Tab con <code>tabindex="-1"</code> o con <code>hidden</code>.
+        </p>
+        <h2>5. Performance</h2>
+        <p>
+          El scroll se dispara mucho. Acá el cambio de clase es barato.
+          Si hicieras algo más pesado, convendría un throttle.
+        </p>
+        <p class="filler">
+          Texto de relleno para que la página tenga altura y puedas probar el
+          botón. Seguí bajando. Un poco más. Ya casi. El botón debería estar
+          visible abajo a la derecha. Tocarlo te trae de vuelta al título.
+        </p>
+        <p class="filler">
+          Fin de la demo. Si no lo ves, seguí un poco más o achicá la ventana.
+        </p>
+      </article>
+    </main>
+
+    <button class="to-top" id="to-top" type="button" aria-label="Volver arriba" hidden>
+      ↑
+    </button>
+
+    <script src="app.js"></script>
+  </body>
+</html>
