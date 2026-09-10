@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejemplo Box Model</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 30px;
+      background: #f8fafc;
+      display: flex;
+      gap: 30px;
+    }
+
+    /* Caja 1: Comportamiento por defecto del navegador */
+    .caja-content-box {
+      box-sizing: content-box;
+      width: 200px;
+      height: 100px;
+      padding: 20px;
+      border: 5px solid #ef4444;
+      margin: 15px;
+      background-color: #fee2e2;
+    }
+
+    /* Caja 2: Estándar moderno recomendado */
+    .caja-border-box {
+      box-sizing: border-box;
+      width: 200px;
+      height: 100px;
+      padding: 20px;
+      border: 5px solid #10b981;
+      margin: 15px;
+      background-color: #d1fae5;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="caja-content-box">
+    <strong>content-box</strong><br>
+    Ancho total en pantalla: 250px
+  </div>
+
+  <div class="caja-border-box">
+    <strong>border-box</strong><br>
+    Ancho total en pantalla: 200px
+  </div>
+
+</body>
+</html>
