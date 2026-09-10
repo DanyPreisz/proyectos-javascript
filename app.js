@@ -1,6 +1,13 @@
 // Array de datos: agrega o edita tus proyectos aquí
 const projects = [
   {
+    title: "Curso de Fullstack",
+    category: "cursofullstack",
+    description: "Curso de desarrollo Fullstack. Cada lección tiene ilustración y audio. El texto aparece cuando hacés clic en el reproductor de esa lección.",
+    tech: ["HTML", "CSS"],
+    link: "curso-fullstackCSS/cursofullstack/index.html"
+  },
+  {
     title: "Selectores Básicos",
     category: "css",
     description: "Uso de Selectores Básicos: Universal (*), de tipo o etiqueta, de clase, de identificador.",
