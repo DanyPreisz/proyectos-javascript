@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    .caja {
+      padding: 10px;
+      margin: 5px;
+      color: white;
+      font-family: sans-serif;
+    }
+
+    /* Ocupa todo el renglón y permite ancho/alto */
+    .bloque {
+      display: block;
+      background-color: #e63946;
+      width: 200px;
+      height: 40px;
+    }
+
+    /* Solo ocupa su texto, ignora width y height */
+    .en-linea {
+      display: inline;
+      background-color: #457b9d;
+      width: 300px; /* Ignorado por el navegador */
+      height: 100px; /* Ignorado por el navegador */
+    }
+
+    /* En la misma línea, pero respeta width y height */
+    .linea-bloque {
+      display: inline-block;
+      background-color: #2a9d8f;
+      width: 140px;
+      height: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Elemento Block -->
+  <div class="caja bloque">Block (200x40)</div>
+  <div class="caja bloque">Block 2 (Línea nueva)</div>
+
+  <hr>
+
+  <!-- Elementos Inline -->
+  <span class="caja en-linea">Inline 1</span>
+  <span class="caja en-linea">Inline 2 (Misma línea)</span>
+
+  <hr>
+
+  <!-- Elementos Inline-Block -->
+  <div class="caja linea-bloque">Inline-block 1</div>
+  <div class="caja linea-bloque">Inline-block 2</div>
+
+</body>
+</html>
