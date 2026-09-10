@@ -106,6 +106,13 @@ const projects = [
     link: "UI y componentes/Cookie banner/index.html"
   },
   {
+    title: "Back to top",
+    category: "frontend",
+    description: "Botón «volver arriba».",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "UI y componentes/back-to-top/index.html"
+  },
+  {
     title: "E-Commerce Landing Page",
     category: "frontend",
     description: "Interfaz moderna con catálogo dinámico y carrito en LocalStorage.",
