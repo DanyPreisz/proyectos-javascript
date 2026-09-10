@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Full Stack desde cero — narración en español</title>
+  <meta name="description" content="Curso narrado en español: primeras lecciones de HTML con texto, ilustraciones y audio." />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-2: #121a33;
+      --bg-3: #182244;
+      --card: rgba(18, 26, 51, 0.82);
+      --line: rgba(160, 190, 255, 0.14);
+      --text: #e8eefc;
+      --muted: #9aa8c7;
+      --accent: #7cffb2;
+      --accent-2: #7aa2ff;
+      --warn: #ffd27a;
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(122, 162, 255, 0.18), transparent 50%),
+        radial-gradient(900px 500px at 100% 0%, rgba(124, 255, 178, 0.1), transparent 45%),
+        var(--bg);
+      min-height: 100vh;
+    }
+
+    a { color: var(--accent-2); }
+    code, .chip {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .wrap {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header.top {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      background: rgba(11, 16, 32, 0.72);
+      border-bottom: 1px solid var(--line);
+    }
+    .top-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #7aa2ff, #7cffb2);
+      color: #081018;
+      font-weight: 800;
+    }
+    .brand small { display: block; color: var(--muted); font-size: 12px; }
+    nav.top-nav { display: flex; gap: 8px; flex-wrap: wrap; }
+    nav.top-nav a {
+      text-decoration: none;
+      color: var(--muted);
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+    }
+    nav.top-nav a:hover {
+      color: var(--text);
+      border-color: var(--line);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .hero {
+      padding: 56px 0 28px;
+      display: grid;
+      grid-template-columns: 1.4fr 0.8fr;
+      gap: 28px;
+      align-items: end;
+    }
+    .kicker {
+      color: var(--accent);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 700;
+      margin: 0 0 10px;
+    }
+    h1 {
+      font-size: clamp(32px, 5vw, 56px);
+      line-height: 1.05;
+      margin: 0 0 16px;
+      letter-spacing: -0.03em;
+    }
+    .hero p { color: var(--muted); font-size: 18px; max-width: 62ch; }
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .stat {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+    }
+    .stat b { display: block; font-size: 22px; }
+    .stat span { color: var(--muted); font-size: 13px; }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 22px;
+      padding: 12px 0 72px;
+      align-items: start;
+    }
+    aside.toc {
+      position: sticky;
+      top: 86px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px;
+    }
+    aside.toc h2 {
+      margin: 0 0 12px;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .lesson-link {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      margin-bottom: 8px;
+    }
+    .lesson-link:hover, .lesson-link.active {
+      background: var(--bg-3);
+      border-color: var(--line);
+    }
+    .lesson-link em {
+      display: block;
+      font-style: normal;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    article.lesson {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 26px;
+      margin-bottom: 22px;
+      box-shadow: var(--shadow);
+    }
+    article.lesson h2 {
+      margin: 0 0 6px;
+      font-size: 28px;
+      letter-spacing: -0.03em;
+    }
+    .meta { color: var(--muted); margin-bottom: 18px; }
+
+    .player {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 14px;
+      align-items: center;
+      background: #0a1228;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px;
+      margin: 8px 0 22px;
+    }
+    .play {
+      width: 52px;
+      height: 52px;
+      border: 0;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #081018;
+      font-size: 18px;
+      cursor: pointer;
+      font-weight: 800;
+    }
+    .play:hover { filter: brightness(1.08); }
+    .bar-wrap { min-width: 0; }
+    .times {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent);
+    }
+    .speed {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 10px;
+      cursor: pointer;
+    }
+
+    .content p {
+      line-height: 1.7;
+      font-size: 17px;
+      color: #d7def2;
+    }
+    .content p + p { margin-top: 14px; }
+    .chip {
+      display: inline-block;
+      background: rgba(122, 162, 255, 0.12);
+      border: 1px solid rgba(122, 162, 255, 0.28);
+      color: #c9d8ff;
+      border-radius: 8px;
+      padding: 1px 7px;
+      font-size: 0.92em;
+    }
+    .note {
+      margin-top: 22px;
+      padding: 14px 16px;
+      border-left: 3px solid var(--warn);
+      background: rgba(255, 210, 122, 0.08);
+      color: #f3e3bb;
+      border-radius: 0 12px 12px 0;
+      font-size: 14px;
+    }
+    figure.illu {
+      margin: 18px 0 22px;
+      padding: 0;
+    }
+    figure.illu img {
+      width: 100%;
+      display: block;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: #0a1228;
+    }
+    figure.illu figcaption {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 8px;
+    }
+    .cover {
+      margin: 0 0 16px;
+    }
+    .cover img {
+      width: 100%;
+      display: block;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+    }
+    .unlock-hint {
+      margin: 0 0 8px;
+      color: var(--warn);
+      font-size: 14px;
+    }
+    .content {
+      display: none;
+    }
+    .lesson.is-open .content {
+      display: block;
+      animation: fade 0.35s ease;
+    }
+    .lesson.is-open .unlock-hint {
+      display: none;
+    }
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 28px 0 48px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .hero, .layout { grid-template-columns: 1fr; }
+      aside.toc { position: static; }
+      .player { grid-template-columns: auto 1fr; }
+      .speed { grid-column: 1 / -1; justify-self: start; }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-inner">
+      <a class="brand" href="#inicio">
+        <span class="logo">&lt;/&gt;</span>
+        <span>
+          Full Stack en español
+          <small>Narración de las primeras lecciones</small>
+        </span>
+      </a>
+      <nav class="top-nav">
+        <a href="#leccion-1">Lección 1</a>
+        <a href="#leccion-2">Lección 2</a>
+        <a href="#leccion-3">Lección 3</a>
+        <a href="#leccion-4">Lección 4</a>
+        <a href="#leccion-5">Lección 5</a>
+        <a href="css.html">Módulo 2 · CSS</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero" id="inicio">
+      <div>
+        <p class="kicker">Curso narrado</p>
+        <h1>Convertite en desarrollador full stack, desde cero.</h1>
+        <p>
+          Versión narrada en español de las primeras clases de un curso de desarrollo full stack.
+          Cada lección tiene ilustración y audio. El texto aparece cuando hacés clic en el reproductor de esa lección.
+        </p>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>5</b><span>lecciones publicadas</span></div>
+        <div class="stat"><b>~20 min</b><span>de audio en total</span></div>
+        <div class="stat"><b>HTML</b><span>estructura de una web</span></div>
+        <div class="stat"><b>ES</b><span>narración en español</span></div>
+      </div>
+    </section>
+
+    <div class="layout">
+      <aside class="toc">
+        <h2>Módulo 1</h2>
+        <a class="lesson-link active" href="#leccion-1">
+          01 · Intro y primeras etiquetas
+          <em>h1, p, img · 5:00</em>
+        </a>
+        <a class="lesson-link" href="#leccion-2">
+          02 · Div, botón e input
+          <em>árbol HTML y formularios · 4:37</em>
+        </a>
+        <a class="lesson-link" href="#leccion-3">
+          03 · Archivos, documento y listas
+          <em>file, doctype, ol y ul · 4:09</em>
+        </a>
+        <a class="lesson-link" href="#leccion-4">
+          04 · Enlaces y primer CSS
+          <em>a, href y stylesheet · 3:26</em>
+        </a>
+        <a class="lesson-link" href="#leccion-5">
+          05 · Propiedades CSS
+          <em>color, margen y clases · 2:48</em>
+        </a>
+        <a class="lesson-link" href="css.html">
+          Módulo 2 · CSS →
+          <em>clases, espacio y Flexbox</em>
+        </a>
+      </aside>
+
+      <div>
+        <article class="lesson" id="leccion-1">
+          <h2>Lección 1 — Intro y primeras etiquetas</h2>
+          <p class="meta">HTML básico · títulos, párrafos e imágenes</p>
+          <figure class="cover">
+            <img src="img-l1-etiquetas.jpg" alt="Ilustración de las etiquetas h1, p e img" />
+          </figure>
+          <p class="unlock-hint">Hacé clic en el audio para mostrar el texto de esta lección.</p>
+
+          <div class="player" data-audio="leccion-01.mp3">
+            <button class="play" type="button" aria-label="Reproducir">▶</button>
+            <div class="bar-wrap">
+              <div class="times"><span class="now">0:00</span><span class="dur">5:00</span></div>
+              <input class="seek" type="range" min="0" max="1000" value="0" />
+            </div>
+            <button class="speed" type="button">1×</button>
+            <audio preload="metadata" src="leccion-01.mp3"></audio>
+          </div>
+
+          <div class="content">
+            <p>Este curso masivo te va a preparar para ser desarrollador full stack. Lo dictan varios instructores y lo armó Scrimba. Acá está Per Harald Borgen, el CEO de Scrimba, presentando el curso.</p>
+            <p>Hola y bienvenida o bienvenido a este recorrido enorme para convertirte en desarrollador full stack. Estos módulos que estás por ver ya ayudaron a innumerables estudiantes en scrimba.com a entrar a la industria tecnológica como developers. Y no de esa forma teórica y aburrida. No. De una forma entretenida, en la que construís juegos, clonás Google e Instagram, armás apps de inversión con inteligencia artificial e incluso extensiones de Chrome. Y cuando digo “vos”, hablo en serio. Porque la única forma de aprender esto es escribir el código con tus propias manos.</p>
+            <p>A lo largo del curso, los profesores te van a tirar desafíos. De hecho, más de quinientas veces. El código inicial de esos desafíos está en GitHub o en scrimba.com, en la versión interactiva y ampliada de este curso.</p>
+            <p>Vamos a empezar con lo básico: HTML, CSS, JavaScript y lo que sigue. Después vamos a pasar a los frameworks y tecnologías que se usan en la industria: React, Node, Next, SQL, TypeScript, testing e incluso ingeniería con inteligencia artificial. Así que esto realmente es tu lugar de partida para convertirte en un desarrollador full stack profesional.</p>
+            <p>Me encantaría seguirte en este camino. Así que conectate conmigo en LinkedIn para poder alentarte desde la tribuna.</p>
+            <p>El filósofo francés René Descartes dijo tres palabras célebres: <em>cogito, ergo sum</em>, que en español se traduce como “pienso, luego existo”. Entonces, vamos a demostrarnos que existimos… programándolo en HTML.</p>
+            <p>La forma de hacerlo no es tan distinta de escribir en un editor de texto común. Ahí simplemente escribirías la oración. Y si quisieras que se viera más prominente, la seleccionarías y elegirías otro tipo de contenido: título uno, título dos, título tres. Si elegís título uno, el texto se vuelve mucho más destacado. Se convierte en un heading one.</p>
+            <p>En HTML hacemos lo mismo creando un archivo HTML. Acá se llama <span class="chip">index.html</span>, un nombre muy habitual para la página principal. En ese archivo escribimos etiquetas. Las etiquetas son como instrucciones para el navegador.</p>
+            <p>Para un título principal usamos la etiqueta <span class="chip">h1</span>. Se abre, va el texto, y se cierra. Eso le dice al navegador: “esto es el encabezado más importante de la página”.</p>
+            <p>Si querés un subtítulo, usás <span class="chip">h2</span>. Si querés un párrafo, usás la etiqueta <span class="chip">p</span>. HTML se trata de anidar elementos: un título, después un párrafo, después una imagen, y así se arma la estructura de la página.</p>
+            <p>Ahora vamos a hablar de imágenes, porque un artículo, por ejemplo sobre Marte, necesita una foto. Para eso usamos la etiqueta <span class="chip">img</span>. Lo particular de esta etiqueta es que no necesita cierre. Por eso se la llama etiqueta de autocierre.</p>
+            <p>Si recargás la página y no aparece nada, es porque todavía no le dijimos qué imagen mostrar. Eso se hace con el atributo <span class="chip">src</span>, que significa source, o fuente. Si el archivo se llama <span class="chip">mars.jpg</span> y está en la misma carpeta que index.html, alcanza con poner esa ruta.</p>
+            <p>Vas a notar que la imagen no se comporta igual que un párrafo. El párrafo ocupa todo el ancho; la imagen ocupa solo el ancho que necesita. HTML sirve para la estructura; CSS, para el estilo.</p>
+            <p><strong>Resumen:</strong> HTML organiza el contenido con etiquetas. <span class="chip">h1</span> y <span class="chip">h2</span> son títulos. <span class="chip">p</span> es un párrafo. <span class="chip">img</span> muestra una imagen y usa <span class="chip">src</span> para indicar de dónde sale el archivo.</p>
+          </div>
+        </article>
+
+        <article class="lesson" id="leccion-2">
+          <h2>Lección 2 — Div, botón e input</h2>
+          <p class="meta">Anidamiento, árbol del documento y campos de formulario</p>
+          <figure class="cover">
+            <img src="img-l2-div.jpg" alt="Ilustración de un div contenedor con elementos hijos" />
+          </figure>
+          <p class="unlock-hint">Hacé clic en el audio para mostrar el texto de esta lección.</p>
+
+          <div class="player" data-audio="leccion-02.mp3">
+            <button class="play" type="button" aria-label="Reproducir">▶</button>
+            <div class="bar-wrap">
+              <div class="times"><span class="now">0:00</span><span class="dur">4:37</span></div>
+              <input class="seek" type="range" min="0" max="1000" value="0" />
+            </div>
+            <button class="speed" type="button">1×</button>
+            <audio preload="metadata" src="leccion-02.mp3"></audio>
+          </div>
+
+          <div class="content">
+            <p>Seguimos con HTML. El siguiente concepto clave es el anidamiento: poner elementos HTML dentro de otros elementos HTML.</p>
+            <p>Imaginá que querés agrupar todo un artículo: el título, la imagen, el subtítulo y los párrafos. Arriba de esas etiquetas abrís otra, y abajo las cerrás. La etiqueta que se usa para eso se llama <span class="chip">div</span>. Viene de divider, divisor, aunque un nombre más claro sería contenedor.</p>
+            <p>Para que el código se lea bien, se indentan las etiquetas de adentro. Así el h1, la imagen, el h3, el párrafo y la otra imagen quedan como hijos de ese div. En pantalla no cambia nada: el div es invisible. Pero ahora podés apuntar a todo el artículo de una sola vez, y eso sirve después para darle estilo con CSS o manipularlo con JavaScript.</p>
+            <p>En una página real vas a ver un montón de divs. Si lo dibujás, parece un árbol genealógico: un tronco, ramas, y más ramas saliendo de esas ramas. Por eso a esta estructura se la llama árbol del documento HTML.</p>
+            <p>En ese árbol también aparece la etiqueta <span class="chip">a</span>, el ancla. Todavía no la usamos en profundidad, pero es la que crea enlaces.</p>
+            <p>En Chrome, si hacés clic derecho sobre un texto de una página y elegís Inspeccionar, se abren las DevTools. En la pestaña Elements ves el HTML real. Ahí podés leer las etiquetas, ver cómo están anidadas y hasta cambiar el texto para entender la estructura.</p>
+            <figure class="illu">
+              <img src="img-l2-controles.jpg" alt="Ilustración de un botón Sign up y campos de usuario y contraseña" />
+              <figcaption>button dispara una acción. input junta datos del usuario.</figcaption>
+            </figure>
+            <p>La etiqueta <span class="chip">button</span> se abre, adentro va el texto que el usuario ve, y se cierra. En el navegador aparece un botón. Por ahora no hace nada útil: para enviar datos o ejecutar lógica hace falta JavaScript.</p>
+            <p>Desafío típico: una pantalla de bienvenida para registrarse. Arriba un h1 que saluda. Después un párrafo con un mensaje corto. Abajo un botón que diga Sign up. Lo importante es poner bien las tres etiquetas.</p>
+            <p>Ese formulario sigue incompleto, porque el usuario no puede escribir su nombre ni su contraseña. Ahí entra la etiqueta <span class="chip">input</span>.</p>
+            <p>Input, igual que img, es de autocierre. Lo obligatorio es decir de qué tipo es, con el atributo <span class="chip">type</span>. El más común es <span class="chip">text</span>: una caja de texto.</p>
+            <p>El atributo <span class="chip">placeholder</span> deja una pista, por ejemplo Enter username. Después se agrega un segundo input para la contraseña. En el mundo real las contraseñas no se muestran: se cambia el type a <span class="chip">password</span> y los caracteres quedan enmascarados.</p>
+            <p><span class="chip">type="date"</span> abre un selector de fecha. <span class="chip">type="time"</span>, uno de hora. <span class="chip">type="color"</span>, uno de color.</p>
+            <p><strong>Resumen:</strong> Div agrupa elementos y no se ve, pero organiza el árbol. Button crea un botón. Input crea campos. HTML sigue siendo estructura. La interacción de verdad llega después, con JavaScript.</p>
+          </div>
+        </article>
+
+        <article class="lesson" id="leccion-3">
+          <h2>Lección 3 — Archivos, documento y listas</h2>
+          <p class="meta">input file, estructura HTML y listas ordenadas o desordenadas</p>
+          <figure class="cover">
+            <img src="img-estructura-html.jpg" alt="Diagrama de la estructura de un documento HTML" />
+          </figure>
+          <p class="unlock-hint">Hacé clic en el audio para mostrar el texto de esta lección.</p>
+
+          <div class="player" data-audio="leccion-03.mp3">
+            <button class="play" type="button" aria-label="Reproducir">▶</button>
+            <div class="bar-wrap">
+              <div class="times"><span class="now">0:00</span><span class="dur">4:09</span></div>
+              <input class="seek" type="range" min="0" max="1000" value="0" />
+            </div>
+            <button class="speed" type="button">1×</button>
+            <audio preload="metadata" src="leccion-03.mp3"></audio>
+          </div>
+
+          <div class="content">
+            <p>Seguimos armando formularios y después pasamos a la estructura real de una página y a las listas.</p>
+            <p>El input es una herramienta muy versátil. Además de texto, contraseña, fecha, hora y color, también sirve para subir archivos. Si querés que alguien cargue una foto de perfil, el type que buscás es <span class="chip">file</span>. En el navegador se ve como un botón que dice Elegir archivo. Al hacer clic, se abre el explorador de la computadora y la persona puede elegir una imagen.</p>
+
+            <figure class="illu">
+              <img src="img-formulario.jpg" alt="Ilustración de un formulario de registro con botón para elegir archivo, usuario y contraseña" />
+              <figcaption>Formulario de registro: foto de perfil, usuario, contraseña y botón de envío.</figcaption>
+            </figure>
+
+            <p>Eso no se adivina de memoria. Una parte enorme de programar es saber buscar. Una búsqueda útil sería: HTML input upload image files. En la documentación vas a encontrar exactamente <span class="chip">type="file"</span>. Lo agregás arriba del botón de registro y el formulario ya deja cargar una foto.</p>
+            <p>Con lo que sabés hasta ahora también podés armar una página que se parezca a un buscador. No hace falta magia: un título o un logo en el centro, debajo un input de tipo text que simula el campo de búsqueda, y dos botones. Uno puede decir Buscar y el otro Me siento con suerte. Es un ejercicio de estructura, no de copiar una marca.</p>
+
+            <figure class="illu">
+              <img src="img-buscador.jpg" alt="Ilustración de una página de búsqueda genérica con campo y dos botones" />
+              <figcaption>Ejercicio: logo, campo de búsqueda y dos botones. Solo HTML.</figcaption>
+            </figure>
+
+            <p>Hasta acá veníamos tirando etiquetas sueltas. Un documento HTML de verdad tiene una estructura fija.</p>
+            <p>Arriba va el <span class="chip">doctype</span>: le dice al navegador que estamos usando HTML 5. Después se abre <span class="chip">html</span>, que envuelve todo. Adentro hay dos grandes bloques. El <span class="chip">head</span> guarda lo que no se ve tanto: el título de la pestaña, el idioma, los estilos. El <span class="chip">body</span> guarda lo visible: títulos, párrafos, imágenes, botones, listas.</p>
+
+            <figure class="illu">
+              <img src="img-estructura-html.jpg" alt="Diagrama de la estructura de un documento HTML: doctype, html, head y body" />
+              <figcaption>Jerarquía de un documento: doctype, html, head y body.</figcaption>
+            </figure>
+
+            <p>Si envolvés una página que ya funcionaba con body, head, html y doctype, en pantalla casi no cambia nada. El cambio está debajo: el archivo queda bien formado y el navegador entiende el documento como corresponde.</p>
+            <p>Ahora, las listas. Sirven cuando querés enumerar cosas: países, pasos, ingredientes, lo que sea.</p>
+            <p>Hay dos etiquetas que trabajan juntas. Una envuelve la lista entera. La otra marca cada ítem.</p>
+            <p>Si el orden importa, usás <span class="chip">ol</span>: ordered list, lista ordenada. Adentro, cada elemento va con <span class="chip">li</span>. El navegador pone 1, 2, 3 solo. Ejemplo: Noruega, Alemania, China.</p>
+            <p>Si el orden no importa, usás <span class="chip">ul</span>: unordered list. Los ítems también van con li, pero el navegador dibuja viñetas. Café, té y código no necesitan ranking.</p>
+
+            <figure class="illu">
+              <img src="img-listas.jpg" alt="Comparación entre lista ordenada ol y lista desordenada ul" />
+              <figcaption>ol numera. ul pone viñetas. li es cada elemento.</figcaption>
+            </figure>
+
+            <p>Podés anidar listas, igual que anidás divs. Un li puede contener otra ul o otra ol. El árbol del documento sigue siendo la misma idea: padres e hijos.</p>
+            <p><strong>Resumen:</strong> <span class="chip">type="file"</span> abre el selector de archivos. Una página de buscador se arma con un campo de texto y botones. El documento correcto lleva doctype, html, head y body. ol numera. ul pone viñetas. li es cada elemento de la lista.</p>
+          </div>
+        </article>
+
+        <article class="lesson" id="leccion-4">
+          <h2>Lección 4 — Enlaces y primer CSS</h2>
+          <p class="meta">Proyecto personal, etiqueta a y hoja de estilos</p>
+          <figure class="cover">
+            <img src="img-l4-enlace.jpg" alt="Ilustración de un enlace HTML con href hacia otra página" />
+          </figure>
+          <p class="unlock-hint">Hacé clic en el audio para mostrar el texto de esta lección.</p>
+
+          <div class="player" data-audio="leccion-04.mp3">
+            <button class="play" type="button" aria-label="Reproducir">▶</button>
+            <div class="bar-wrap">
+              <div class="times"><span class="now">0:00</span><span class="dur">3:26</span></div>
+              <input class="seek" type="range" min="0" max="1000" value="0" />
+            </div>
+            <button class="speed" type="button">1×</button>
+            <audio preload="metadata" src="leccion-04.mp3"></audio>
+          </div>
+
+          <div class="content">
+            <p>Cerramos esta primera tanda de HTML con un proyecto personal, los enlaces y el primer contacto con CSS.</p>
+            <p>Las listas no son solo para documentos aburridos. En muchos sitios la barra de navegación es una lista desordenada: un <span class="chip">ul</span> que envuelve varios <span class="chip">li</span>. Cada categoría del menú es un ítem. Cuando llegue CSS vas a poder estilar esa lista y convertirla en un menú horizontal.</p>
+            <p>El proyecto de esta sección es una web sobre vos. Empieza simple: una foto, un h1 con tu nombre, un h2 de datos, una lista con tres datos personales, un párrafo y un lugar para unirse a un boletín. Después se personaliza: género de películas favorito, fruta favorita, modo claro u oscuro, bordes filosos o redondeados. Cada elección cambia la cara de la página.</p>
+            <p>El elemento nuevo más importante acá es el enlace. La etiqueta se llama <span class="chip">a</span>, de anchor, ancla. El texto que se ve es el que va entre la apertura y el cierre. El destino se escribe en el atributo <span class="chip">href</span>. Si querés que “LinkedIn” lleve a tu perfil, envolvés esa palabra con a y en href ponés la URL.</p>
+            <p>Un extra útil es <span class="chip">target="_blank"</span>: el enlace se abre en una pestaña nueva y no te saca de tu sitio.</p>
+
+            <figure class="illu">
+              <img src="img-l4-enlace.jpg" alt="Diagrama de un enlace: texto subrayado, etiqueta a href y página de destino" />
+              <figcaption>a define el enlace. href indica a dónde va.</figcaption>
+            </figure>
+
+            <p>También aparece otra etiqueta <span class="chip">link</span>, distinta de a. Esta no es para que el usuario haga clic. Vive en el head y conecta el HTML con un archivo de estilos. <span class="chip">rel="stylesheet"</span> le dice al navegador que el recurso es una hoja de estilo. Href apunta a <span class="chip">styles.css</span>. Si sacás esa línea, la página vuelve al aspecto crudo del navegador. Si la dejás, el CSS entra y pinta el documento.</p>
+            <p>CSS funciona así: elegís un elemento, abrís llaves y adentro escribís propiedades. El elemento que elegís se llama selector. Si el selector es body, las reglas se aplican a todo lo visible de la página.</p>
+            <p>Una regla típica: body, llave de apertura, color, dos puntos, red, punto y coma, llave de cierre. Color acá significa color de texto. La propiedad va antes de los dos puntos. El valor va después. Cada declaración termina en punto y coma.</p>
+
+            <figure class="illu">
+              <img src="img-l4-css.jpg" alt="Comparación de una página solo con HTML y la misma página con CSS" />
+              <figcaption>HTML arma la estructura. CSS le da color, espacio y jerarquía visual.</figcaption>
+            </figure>
+
+            <p>Si cambiás blue por red, el texto del body se pone rojo. HTML sigue siendo la estructura. CSS es el estilo: color, espacio, tipografía, bordes.</p>
+            <p><strong>Resumen:</strong> ul puede ser un menú. a y href crean enlaces. target blank abre otra pestaña. link rel stylesheet conecta un archivo CSS. Un selector, llaves, propiedad y valor: esa es la sintaxis básica de CSS.</p>
+          </div>
+        </article>
+
+        <article class="lesson" id="leccion-5">
+          <h2>Lección 5 — Propiedades CSS</h2>
+          <p class="meta">Color, tipografía, margen y primeras clases</p>
+          <figure class="cover">
+            <img src="img-l5-boxmodel.jpg" alt="Diagrama del modelo de caja CSS: content, padding, border y margin" />
+          </figure>
+          <p class="unlock-hint">Hacé clic en el audio para mostrar el texto de esta lección.</p>
+
+          <div class="player" data-audio="leccion-05.mp3">
+            <button class="play" type="button" aria-label="Reproducir">▶</button>
+            <div class="bar-wrap">
+              <div class="times"><span class="now">0:00</span><span class="dur">2:48</span></div>
+              <input class="seek" type="range" min="0" max="1000" value="0" />
+            </div>
+            <button class="speed" type="button">1×</button>
+            <audio preload="metadata" src="leccion-05.mp3"></audio>
+          </div>
+
+          <div class="content">
+            <p>Escribimos las primeras líneas de CSS de verdad: propiedades, valores y el modelo de caja.</p>
+            <p>Una regla CSS termina sí o sí con punto y coma. Si te lo olvidás, se rompe el ejemplo. El selector elige el elemento. Entre llaves van las declaraciones.</p>
+            <p>Propiedades que vas a usar ya mismo.</p>
+            <p><span class="chip">background-color</span> pinta el fondo. <span class="chip">color</span> pinta el texto. No son lo mismo. Podés usar nombres que CSS ya conoce, como white o saddle brown, o más adelante códigos hexadecimales.</p>
+            <p><span class="chip">font-size</span> controla el tamaño de la letra. En esta etapa se mide en <span class="chip">px</span>, píxeles. 200 px es enorme. 25 px suele verse razonable para un texto de widget.</p>
+            <p><span class="chip">font-weight</span> es el grosor: normal o bold, o un número como 400 y 700.</p>
+            <p><span class="chip">text-align</span> alinea el texto: left, center o right.</p>
+            <p><span class="chip">margin-top</span> agrega espacio arriba del elemento. También se mide en px. Si ponés 100 px, el contenido baja.</p>
+            <p>Los comentarios en CSS van entre barra asterisco y asterisco barra. El navegador los ignora. Sirven para dejar pistas.</p>
+
+            <figure class="illu">
+              <img src="img-l5-boxmodel.jpg" alt="Modelo de caja: contenido, padding, borde y margen" />
+              <figcaption>Margin es espacio afuera. Padding es espacio adentro. Border es la línea del medio.</figcaption>
+            </figure>
+
+            <p>Un consejo de estructura: no le pongas el margin top a la imagen si esa imagen algún día puede cambiar. Mejor envolvés el bloque en un div y le das el margen al contenedor. El div no se ve, pero sostiene el diseño cuando el contenido de adentro cambia.</p>
+            <p>Eso conecta con las clases. Si seleccionás solo img o solo div, cuando agregues más imágenes o más divs el estilo se aplica a todos y aparecen bugs. La clase te deja marcar un elemento puntual. En HTML escribís <span class="chip">class="main"</span>. En CSS lo seleccionás con un punto: <span class="chip">.main</span>. Así estilás esa caja y no todas las cajas.</p>
+
+            <figure class="illu">
+              <img src="img-l5-display.jpg" alt="Comparación entre elementos en bloque y elementos en línea" />
+              <figcaption>En bloque, h1, p y div ocupan todo el ancho. En línea, a, span e img fluyen con el texto.</figcaption>
+            </figure>
+
+            <p><strong>Resumen:</strong> propiedad, dos puntos, valor, punto y coma. Background color es el fondo. Color es el texto. Font size y font weight cambian la tipografía. Margin top separa por fuera. Las clases, con un punto en CSS, evitan que un selector genérico pinte de más.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Módulo 1 · HTML.
+      <a href="css.html">Seguir al módulo 2 · CSS</a>.
+      No incluye el audio ni el enlace del video original.
+    </div>
+  </footer>
+
+  <script>
+    const speeds = [1, 1.25, 1.5, 0.85];
+    const players = [...document.querySelectorAll(".player")];
+
+    const fmt = (s) => {
+      if (!Number.isFinite(s)) return "0:00";
+      const m = Math.floor(s / 60);
+      const sec = Math.floor(s % 60).toString().padStart(2, "0");
+      return m + ":" + sec;
+    };
+
+    const stopOthers = (current) => {
+      players.forEach((p) => {
+        const audio = p.querySelector("audio");
+        if (audio !== current) {
+          audio.pause();
+          p.querySelector(".play").textContent = "▶";
+        }
+      });
+    };
+
+    players.forEach((p) => {
+      const audio = p.querySelector("audio");
+      const play = p.querySelector(".play");
+      const seek = p.querySelector(".seek");
+      const now = p.querySelector(".now");
+      const dur = p.querySelector(".dur");
+      const speedBtn = p.querySelector(".speed");
+      let speedIdx = 0;
+      let seeking = false;
+
+      const sync = () => {
+        if (!seeking && audio.duration) {
+          seek.value = Math.round((audio.currentTime / audio.duration) * 1000);
+        }
+        now.textContent = fmt(audio.currentTime || 0);
+      };
+
+      audio.addEventListener("loadedmetadata", () => {
+        dur.textContent = fmt(audio.duration);
+      });
+      audio.addEventListener("timeupdate", sync);
+      audio.addEventListener("ended", () => {
+        play.textContent = "▶";
+        seek.value = 1000;
+      });
+
+      const lesson = p.closest(".lesson");
+      const reveal = () => lesson && lesson.classList.add("is-open");
+
+      play.addEventListener("click", () => {
+        reveal();
+        if (audio.paused) {
+          stopOthers(audio);
+          audio.play();
+          play.textContent = "❚❚";
+        } else {
+          audio.pause();
+          play.textContent = "▶";
+        }
+      });
+      p.addEventListener("click", (ev) => {
+        if (ev.target === play) return;
+        reveal();
+      });
+
+      seek.addEventListener("input", () => {
+        seeking = true;
+        if (audio.duration) {
+          audio.currentTime = (seek.value / 1000) * audio.duration;
+          now.textContent = fmt(audio.currentTime);
+        }
+      });
+      seek.addEventListener("change", () => { seeking = false; });
+
+      speedBtn.addEventListener("click", () => {
+        speedIdx = (speedIdx + 1) % speeds.length;
+        audio.playbackRate = speeds[speedIdx];
+        speedBtn.textContent = speeds[speedIdx] + "×";
+      });
+    });
+
+    const links = [...document.querySelectorAll(".lesson-link")];
+    const setActive = () => {
+      const id = location.hash || "#leccion-1";
+      links.forEach((a) => a.classList.toggle("active", a.getAttribute("href") === id));
+    };
+    window.addEventListener("hashchange", setActive);
+    setActive();
+  </script>
+</body>
+</html>

@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Módulo 2 · CSS — Full Stack en español</title>
+  <meta name="description" content="Módulo 2 de CSS: clases, espacio, box model y Flexbox. Texto, ilustraciones y audio." />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-2: #121a33;
+      --bg-3: #182244;
+      --card: rgba(18, 26, 51, 0.82);
+      --line: rgba(160, 190, 255, 0.14);
+      --text: #e8eefc;
+      --muted: #9aa8c7;
+      --accent: #7cffb2;
+      --accent-2: #7aa2ff;
+      --warn: #ffd27a;
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(122, 162, 255, 0.18), transparent 50%),
+        radial-gradient(900px 500px at 100% 0%, rgba(124, 255, 178, 0.1), transparent 45%),
+        var(--bg);
+      min-height: 100vh;
+    }
+
+    a { color: var(--accent-2); }
+    code, .chip {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .wrap {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header.top {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      background: rgba(11, 16, 32, 0.72);
+      border-bottom: 1px solid var(--line);
+    }
+    .top-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .logo {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #7aa2ff, #7cffb2);
+      color: #081018;
+      font-weight: 800;
+    }
+    .brand small { display: block; color: var(--muted); font-size: 12px; }
+    nav.top-nav { display: flex; gap: 8px; flex-wrap: wrap; }
+    nav.top-nav a {
+      text-decoration: none;
+      color: var(--muted);
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+    }
+    nav.top-nav a:hover {
+      color: var(--text);
+      border-color: var(--line);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .hero {
+      padding: 56px 0 28px;
+      display: grid;
+      grid-template-columns: 1.4fr 0.8fr;
+      gap: 28px;
+      align-items: end;
+    }
+    .kicker {
+      color: var(--accent);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 700;
+      margin: 0 0 10px;
+    }
+    h1 {
+      font-size: clamp(32px, 5vw, 56px);
+      line-height: 1.05;
+      margin: 0 0 16px;
+      letter-spacing: -0.03em;
+    }
+    .hero p { color: var(--muted); font-size: 18px; max-width: 62ch; }
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .stat {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+    }
+    .stat b { display: block; font-size: 22px; }
+    .stat span { color: var(--muted); font-size: 13px; }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 22px;
+      padding: 12px 0 72px;
+      align-items: start;
+    }
+    aside.toc {
+      position: sticky;
+      top: 86px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 18px;
+    }
+    aside.toc h2 {
+      margin: 0 0 12px;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .lesson-link {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
+      padding: 12px;
+      border-radius: 14px;
+      border: 1px solid transparent;
+      margin-bottom: 8px;
+    }
+    .lesson-link:hover, .lesson-link.active {
+      background: var(--bg-3);
+      border-color: var(--line);
+    }
+    .lesson-link em {
+      display: block;
+      font-style: normal;
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    article.lesson {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 26px;
+      margin-bottom: 22px;
+      box-shadow: var(--shadow);
+    }
+    article.lesson h2 {
+      margin: 0 0 6px;
+      font-size: 28px;
+      letter-spacing: -0.03em;
+    }
+    .meta { color: var(--muted); margin-bottom: 18px; }
+
+    .player {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 14px;
+      align-items: center;
+      background: #0a1228;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 14px;
+      margin: 8px 0 22px;
+    }
+    .play {
+      width: 52px;
+      height: 52px;
+      border: 0;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #081018;
+      font-size: 18px;
+      cursor: pointer;
+      font-weight: 800;
+    }
+    .play:hover { filter: brightness(1.08); }
+    .bar-wrap { min-width: 0; }
+    .times {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 6px;
+    }
+    input[type="range"] {
+      width: 100%;
+      accent-color: var(--accent);
+    }
+    .speed {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 10px;
+      cursor: pointer;
+    }
+
+    .content p {
+      line-height: 1.7;
+      font-size: 17px;
+      color: #d7def2;
+    }
+    .content p + p { margin-top: 14px; }
+    .chip {
+      display: inline-block;
+      background: rgba(122, 162, 255, 0.12);
+      border: 1px solid rgba(122, 162, 255, 0.28);
+      color: #c9d8ff;
+      border-radius: 8px;
+      padding: 1px 7px;
+      font-size: 0.92em;
+    }
+    .note {
+      margin-top: 22px;
+      padding: 14px 16px;
+      border-left: 3px solid var(--warn);
+      background: rgba(255, 210, 122, 0.08);
+      color: #f3e3bb;
+      border-radius: 0 12px 12px 0;
+      font-size: 14px;
+    }
+    figure.illu {
+      margin: 18px 0 22px;
+      padding: 0;
+    }
+    figure.illu img {
+      width: 100%;
+      display: block;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: #0a1228;
+    }
+    figure.illu figcaption {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 8px;
+    }
+    .cover {
+      margin: 0 0 16px;
+    }
+    .cover img {
+      width: 100%;
+      display: block;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+    }
+    .unlock-hint {
+      margin: 0 0 8px;
+      color: var(--warn);
+      font-size: 14px;
+    }
+    .content {
+      display: none;
+    }
+    .lesson.is-open .content {
+      display: block;
+      animation: fade 0.35s ease;
+    }
+    .lesson.is-open .unlock-hint {
+      display: none;
+    }
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: none; }
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 28px 0 48px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .hero, .layout { grid-template-columns: 1fr; }
+      aside.toc { position: static; }
+      .player { grid-template-columns: auto 1fr; }
+      .speed { grid-column: 1 / -1; justify-self: start; }
+    }
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-inner">
+      <a class="brand" href="index.html">
+        <span class="logo">&lt;/&gt;</span>
+        <span>
+          Full Stack en español
+          <small>Módulo 2 · CSS</small>
+        </span>
+      </a>
+      <nav class="top-nav">
+        <a href="index.html">Módulo 1 · HTML</a>
+        <a href="#leccion-6">Lección 6</a>
+        <a href="#leccion-7">Lección 7</a>
+        <a href="#leccion-8">Lección 8</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero" id="inicio">
+      <div>
+        <p class="kicker">Módulo 2</p>
+        <h1>CSS: estilo, espacio y alineación.</h1>
+        <p>
+          Seguimos el curso en una página nueva para no recargar el módulo 1.
+          El texto de cada lección aparece cuando hacés clic en su audio.
+        </p>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>3</b><span>lecciones en este módulo</span></div>
+        <div class="stat"><b>~4:36</b><span>de audio</span></div>
+        <div class="stat"><b>CSS</b><span>clases, caja y flex</span></div>
+        <div class="stat"><b>←</b><span>volver al módulo 1</span></div>
+      </div>
+    </section>
+
+    <div class="layout">
+      <aside class="toc">
+        <h2>Temario</h2>
+        <a class="lesson-link" href="index.html">← Módulo 1 · HTML</a>
+        <a class="lesson-link active" href="#leccion-6">
+          06 · Clases y display
+          <em>selectores con punto · 1:17</em>
+        </a>
+        <a class="lesson-link" href="#leccion-7">
+          07 · Espacio y radio
+          <em>margin, padding, border · 1:34</em>
+        </a>
+        <a class="lesson-link" href="#leccion-8">
+          08 · Caja y Flexbox
+          <em>box model y alineación · 1:45</em>
+        </a>
+      </aside>
+
+      <div>
+        <article class="lesson" id="leccion-6">
+          <h2>Lección 6 — Clases y display</h2>
+          <p class="meta">Selectores que escalan y elementos en bloque</p>
+          <figure class="cover">
+            <img src="img-m2-clases.jpg" alt="Ilustración de una clase CSS aplicada solo a una tarjeta" />
+          </figure>
+          <p class="unlock-hint">Hacé clic en el audio para mostrar el texto de esta lección.</p>
+          <div class="player" data-audio="leccion-06.mp3">
+            <button class="play" type="button" aria-label="Reproducir">▶</button>
+            <div class="bar-wrap">
+              <div class="times"><span class="now">0:00</span><span class="dur">1:17</span></div>
+              <input class="seek" type="range" min="0" max="1000" value="0" />
+            </div>
+            <button class="speed" type="button">1×</button>
+            <audio preload="metadata" src="leccion-06.mp3"></audio>
+          </div>
+          <div class="content">
+            <p>Las clases hacen que el CSS escale. El nombre lo elegís vos. Puede ser <span class="chip">logo-img</span> o <span class="chip">search-input</span>. En HTML va <span class="chip">class</span> y el nombre. En CSS el selector lleva un punto adelante: <span class="chip">.search-input</span>.</p>
+            <p>Si cambiás el selector de img a punto logo-img y te olvidás de poner esa clase en el HTML, el diseño se rompe. No es magia: esa regla ya no apunta a ningún elemento.</p>
+            <figure class="illu">
+              <img src="img-m2-clases.jpg" alt="Una tarjeta con class card recibe estilos; las otras no" />
+              <figcaption>La regla .card solo pinta al elemento que tiene esa clase.</figcaption>
+            </figure>
+            <p>Display block explica por qué tres divs de colores se apilan. Cada uno ocupa todo el ancho y empuja al siguiente hacia abajo. El navegador además le pone un margen por defecto al body. Por eso a veces ves un borde blanco alrededor. Si querés que las cajas toquen el borde de la ventana, le sacás el margin al body.</p>
+            <p><strong>Resumen:</strong> class en HTML, punto en CSS. Display block apila. El margen del body es ayuda del navegador, no un error de tu código.</p>
+          </div>
+        </article>
+
+        <article class="lesson" id="leccion-7">
+          <h2>Lección 7 — Espacio y radio</h2>
+          <p class="meta">Margin, padding, border y border-radius</p>
+          <figure class="cover">
+            <img src="img-m2-espacio.jpg" alt="Botón con padding, margin, border y border-radius señalados" />
+          </figure>
+          <p class="unlock-hint">Hacé clic en el audio para mostrar el texto de esta lección.</p>
+          <div class="player" data-audio="leccion-07.mp3">
+            <button class="play" type="button" aria-label="Reproducir">▶</button>
+            <div class="bar-wrap">
+              <div class="times"><span class="now">0:00</span><span class="dur">1:34</span></div>
+              <input class="seek" type="range" min="0" max="1000" value="0" />
+            </div>
+            <button class="speed" type="button">1×</button>
+            <audio preload="metadata" src="leccion-07.mp3"></audio>
+          </div>
+          <div class="content">
+            <p>Margin es el espacio afuera. Separa una caja de sus vecinas. Ya usaste margin-top. También existen margin-right, margin-bottom y margin-left. O el atajo <span class="chip">margin</span> con uno, dos o cuatro valores.</p>
+            <p>Padding es el espacio adentro, entre el contenido y el borde. En un botón, más padding hace el área clickeable más cómoda. Un valor típico es 10 px arriba y abajo y 20 px a los costados.</p>
+            <figure class="illu">
+              <img src="img-m2-espacio.jpg" alt="Espaciado CSS alrededor de un botón Sign up" />
+              <figcaption>Margin afuera. Padding adentro. Border la línea. Border-radius las esquinas.</figcaption>
+            </figure>
+            <p>Border dibuja la línea. Grosor, estilo y color: por ejemplo <span class="chip">1px solid gray</span>.</p>
+            <p>Border-radius redondea. En un botón chico, 20 px puede dejar dos medios círculos a los costados y se ve como pastilla. Si agrandás el padding, a veces hace falta subir también el radius para que siga viéndose suave.</p>
+            <p>Un ejercicio clásico es armar banderas con tres divs de colores y controlar solo alturas y márgenes. Otro es estilar un botón.</p>
+            <p><strong>Resumen:</strong> margin afuera, padding adentro, border la línea, border-radius las esquinas. El modelo de caja suma todo eso al ancho visible.</p>
+          </div>
+        </article>
+
+        <article class="lesson" id="leccion-8">
+          <h2>Lección 8 — Caja y Flexbox</h2>
+          <p class="meta">Inspeccionar el box model y alinear con flex</p>
+          <figure class="cover">
+            <img src="img-m2-flexbox.jpg" alt="Diagrama de Flexbox centrando tres botones" />
+          </figure>
+          <p class="unlock-hint">Hacé clic en el audio para mostrar el texto de esta lección.</p>
+          <div class="player" data-audio="leccion-08.mp3">
+            <button class="play" type="button" aria-label="Reproducir">▶</button>
+            <div class="bar-wrap">
+              <div class="times"><span class="now">0:00</span><span class="dur">1:45</span></div>
+              <input class="seek" type="range" min="0" max="1000" value="0" />
+            </div>
+            <button class="speed" type="button">1×</button>
+            <audio preload="metadata" src="leccion-08.mp3"></audio>
+          </div>
+          <div class="content">
+            <p>En las herramientas de desarrollador podés ver el box model de un input. El rectángulo azul es el contenido: por ejemplo 400 px de ancho por 24 px de alto. El verde es padding. Si el padding de arriba y abajo es 10 px, la altura visible crece.</p>
+            <p>Por eso un input no mide solo el width que escribiste. Hay que sumar padding y borde, salvo que uses <span class="chip">box-sizing: border-box</span>. Esa propiedad hace que el width incluya padding y borde, y el cálculo se vuelve más predecible.</p>
+            <figure class="illu">
+              <img src="img-m2-flexbox.jpg" alt="Contenedor flex con justify-content center y align-items center" />
+              <figcaption>display flex en el padre. justify-content en el eje principal. align-items en el cruzado.</figcaption>
+            </figure>
+            <p>Cuando tenés dos o tres botones debajo del campo, Flexbox ordena la fila. Al padre le ponés <span class="chip">display: flex</span>. Los hijos se convierten en ítems flex.</p>
+            <p><span class="chip">justify-content</span> maneja el eje principal. Center los junta al medio. Space-between los separa. <span class="chip">align-items</span> maneja el eje cruzado. Center los alinea en vertical.</p>
+            <p><strong>Resumen:</strong> inspeccioná el box model. Border-box simplifica la cuenta. Flexbox alinea en fila. Justify en el eje principal, align en el cruzado.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <a href="index.html">Volver al módulo 1 · HTML</a>
+      · Material de estudio en español. No incluye el audio ni el enlace del video original.
+    </div>
+  </footer>
+  <script>
+    const speeds = [1, 1.25, 1.5, 0.85];
+    const players = [...document.querySelectorAll(".player")];
+
+    const fmt = (s) => {
+      if (!Number.isFinite(s)) return "0:00";
+      const m = Math.floor(s / 60);
+      const sec = Math.floor(s % 60).toString().padStart(2, "0");
+      return m + ":" + sec;
+    };
+
+    const stopOthers = (current) => {
+      players.forEach((p) => {
+        const audio = p.querySelector("audio");
+        if (audio !== current) {
+          audio.pause();
+          p.querySelector(".play").textContent = "▶";
+        }
+      });
+    };
+
+    players.forEach((p) => {
+      const audio = p.querySelector("audio");
+      const play = p.querySelector(".play");
+      const seek = p.querySelector(".seek");
+      const now = p.querySelector(".now");
+      const dur = p.querySelector(".dur");
+      const speedBtn = p.querySelector(".speed");
+      let speedIdx = 0;
+      let seeking = false;
+
+      const sync = () => {
+        if (!seeking && audio.duration) {
+          seek.value = Math.round((audio.currentTime / audio.duration) * 1000);
+        }
+        now.textContent = fmt(audio.currentTime || 0);
+      };
+
+      audio.addEventListener("loadedmetadata", () => {
+        dur.textContent = fmt(audio.duration);
+      });
+      audio.addEventListener("timeupdate", sync);
+      audio.addEventListener("ended", () => {
+        play.textContent = "▶";
+        seek.value = 1000;
+      });
+
+      const lesson = p.closest(".lesson");
+      const reveal = () => lesson && lesson.classList.add("is-open");
+
+      play.addEventListener("click", () => {
+        reveal();
+        if (audio.paused) {
+          stopOthers(audio);
+          audio.play();
+          play.textContent = "❚❚";
+        } else {
+          audio.pause();
+          play.textContent = "▶";
+        }
+      });
+      p.addEventListener("click", (ev) => {
+        if (ev.target === play) return;
+        reveal();
+      });
+
+      seek.addEventListener("input", () => {
+        seeking = true;
+        if (audio.duration) {
+          audio.currentTime = (seek.value / 1000) * audio.duration;
+          now.textContent = fmt(audio.currentTime);
+        }
+      });
+      seek.addEventListener("change", () => { seeking = false; });
+
+      speedBtn.addEventListener("click", () => {
+        speedIdx = (speedIdx + 1) % speeds.length;
+        audio.playbackRate = speeds[speedIdx];
+        speedBtn.textContent = speeds[speedIdx] + "×";
+      });
+    });
+
+    const links = [...document.querySelectorAll(".lesson-link")];
+    const setActive = () => {
+      const id = location.hash || "#leccion-1";
+      links.forEach((a) => a.classList.toggle("active", a.getAttribute("href") === id));
+    };
+    window.addEventListener("hashchange", setActive);
+    setActive();
+  </script>
+</body>
+</html>
