@@ -2,7 +2,7 @@
 const projects = [
   {
     title: "Decisiones",
-    category: "js",
+    category: "javascript",
     description: "Un ejemplo práctico y autocontenido en HTML que utiliza estructuras de decisión (if, else if, else) para evaluar la edad del usuario y mostrar una respuesta en tiempo real.",
     tech: ["HTML", "CSS", "JavaScript"],
     link: "JS/decisiones/index.html"
