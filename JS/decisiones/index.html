@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Estructuras de Decisión en JavaScript</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    .card {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 16px;
+    }
+    input, button {
+      width: 100%;
+      padding: 8px;
+      margin-top: 8px;
+      box-sizing: border-box;
+    }
+    #mensaje {
+      margin-top: 16px;
+      padding: 10px;
+      font-weight: bold;
+      border-radius: 4px;
+      display: none;
+    }
+    .verde { background-color: #d4edda; color: #155724; display: block !important; }
+    .azul { background-color: #d1ecf1; color: #0c5460; display: block !important; }
+    .rojo { background-color: #f8d7da; color: #721c24; display: block !important; }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h3>Validador de Acceso</h3>
+    <label for="edad">Ingresa tu edad:</label>
+    <input type="number" id="edad" placeholder="Ej: 18">
+    <button id="btnVerificar">Verificar</button>
+
+    <div id="mensaje"></div>
+  </div>
+
+  <script>
+    const btn = document.querySelector("#btnVerificar");
+    const inputEdad = document.querySelector("#edad");
+    const panelMensaje = document.querySelector("#mensaje");
+
+    btn.addEventListener("click", () => {
+      // 1. Obtener y convertir el valor ingresado a número
+      const edad = Number(inputEdad.value);
+
+      // Limpiar clases previas
+      panelMensaje.className = "";
+
+      // 2. Estructura de toma de decisiones
+      if (inputEdad.value === "" || edad < 0) {
+        panelMensaje.textContent = "Por favor, ingresa una edad válida.";
+        panelMensaje.classList.add("rojo");
+      } else if (edad >= 65) {
+        panelMensaje.textContent = "Acceso concedido (Pase Preferencial / Jubilado).";
+        panelMensaje.classList.add("azul");
+      } else if (edad >= 18) {
+        panelMensaje.textContent = "Acceso concedido (Adulto).";
+        panelMensaje.classList.add("verde");
+      } else {
+        panelMensaje.textContent = "Acceso restringido (Menor de edad).";
+        panelMensaje.classList.add("rojo");
+      }
+    });
+  </script>
+
+</body>
+</html>
