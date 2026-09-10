@@ -15,6 +15,13 @@ const projects = [
     link: "CSS/especificidad y cascada/index.html"
   }, 
   {
+    title: "Box Model (modelo de caja)",
+    category: "css",
+    description: "Box Model (modelo de caja)",
+    tech: ["HTML", "CSS"],
+    link: "CSS/Box Model/index.html"
+  },  
+  {
     title: "Padding",
     category: "css",
     description: "El padding (relleno interior) es el espacio transparente que se genera entre el contenido de un elemento (texto, imagen, etc.) y su borde.",
