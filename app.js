@@ -4,8 +4,8 @@ const projects = [
     title: "Curso de Fullstack",
     category: "cursofullstack",
     description: "Curso de desarrollo Fullstack. Cada lección tiene ilustración y audio. El texto aparece cuando hacés clic en el reproductor de esa lección.",
-    tech: ["HTML", "CSS"],
-    link: "curso-fullstackCSS/cursofullstack/index.html"
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "curso-fullstack/curso-fullstack-01/index.html"
   },
   {
     title: "Selectores Básicos",
