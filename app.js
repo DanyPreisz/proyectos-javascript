@@ -40,7 +40,7 @@ const projects = [
     category: "css",
     description: "block, inline, inline-block",
     tech: ["HTML", "CSS"],
-    link: "CSS/block inline inline block/index.html"
+    link: "CSS/block inline inlineblock/index.html"
   },  
   {
     title: "Padding",
