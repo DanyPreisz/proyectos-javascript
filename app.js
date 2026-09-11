@@ -161,6 +161,13 @@ const projects = [
     description: "Tocá la lupa: el input se estira. Escribí para filtrar. Escape lo cierra.",
     tech: ["HTML", "CSS", "JavaScript"],
     link: "UI y componentes/hidden-search/index.html"
+  },  
+  {
+    title: "Expanding cards",
+    category: "frontend",
+    description: "Una card arranca abierta. Clic en otra: esa toma casi todo el ancho. Las demás se comprimen. El título solo se lee bien en la activa.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "UI y componentes/expanding-cards/index.html"
   },
   {
     title: "E-Commerce Landing Page",
