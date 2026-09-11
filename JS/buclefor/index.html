@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Bucles en JavaScript</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    .card {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 16px;
+    }
+    input, button {
+      width: 100%;
+      padding: 8px;
+      margin-top: 8px;
+      box-sizing: border-box;
+    }
+    ul {
+      margin-top: 16px;
+      padding-left: 20px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h3>Generador de Tablas de Multiplicar</h3>
+    <label for="numero">Ingresa un número base:</label>
+    <input type="number" id="numero" value="5">
+    <button id="btnGenerar">Calcular Tabla</button>
+
+    <ul id="resultado"></ul>
+  </div>
+
+  <script>
+    const btn = document.querySelector("#btnGenerar");
+    const inputNumero = document.querySelector("#numero");
+    const listaResultado = document.querySelector("#resultado");
+
+    btn.addEventListener("click", () => {
+      const base = Number(inputNumero.value);
+
+      // Limpiar la lista previa
+      listaResultado.innerHTML = "";
+
+      // Bucle for: se repite del 1 al 10
+      for (let i = 1; i <= 10; i++) {
+        const resultado = base * i;
+
+        // Crear el elemento <li> dinámicamente
+        const item = document.createElement("li");
+        item.textContent = `${base} × ${i} = ${resultado}`;
+
+        // Agregarlo a la lista en pantalla
+        listaResultado.appendChild(item);
+      }
+    });
+  </script>
+
+</body>
+</html>
