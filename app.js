@@ -170,6 +170,13 @@ const projects = [
     link: "UI y componentes/expanding-cards/index.html"
   },
   {
+    title: "Progress steps",
+    category: "frontend",
+    description: "Progress steps.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "UI y componentes/progress-steps/index.html"
+  },
+  {
     title: "E-Commerce Landing Page",
     category: "frontend",
     description: "Interfaz moderna con catálogo dinámico y carrito en LocalStorage.",
