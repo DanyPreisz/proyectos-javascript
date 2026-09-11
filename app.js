@@ -125,6 +125,13 @@ const projects = [
     description: "Botón «volver arriba».",
     tech: ["HTML", "CSS", "JavaScript"],
     link: "UI y componentes/back-to-top/index.html"
+  },  
+  {
+    title: "Navbar sticky",
+    category: "frontend",
+    description: "La barra se queda arriba, se oscurece y el link activo cambia según la sección.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "UI y componentes/navbar-sticky/index.html"
   },
   {
     title: "E-Commerce Landing Page",
