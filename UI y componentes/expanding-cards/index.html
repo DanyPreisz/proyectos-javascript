@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expanding cards · Vanilla JS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="page">
+      <p class="eyebrow">HTML · CSS · JS vanilla</p>
+      <h1>Expanding cards</h1>
+      <p class="lede">Clic en una tarjeta: se expande. Las otras se comprimen.</p>
+
+      <div class="cards" id="cards">
+        <button class="card is-active" type="button" data-tone="a">
+          <span>Tareas</span>
+        </button>
+        <button class="card" type="button" data-tone="b">
+          <span>Modal</span>
+        </button>
+        <button class="card" type="button" data-tone="c">
+          <span>Tabs</span>
+        </button>
+        <button class="card" type="button" data-tone="d">
+          <span>Toasts</span>
+        </button>
+        <button class="card" type="button" data-tone="e">
+          <span>Navbar</span>
+        </button>
+      </div>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
