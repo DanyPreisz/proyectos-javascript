@@ -8,6 +8,13 @@ const projects = [
     link: "JS/decisiones/index.html"
   },
   {
+    title: "Bucle For",
+    category: "javascript",
+    description: "Este ejemplo interactivo en HTML utiliza un bucle for para generar una tabla de multiplicar en tiempo real e insertar los resultados en el DOM.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "JS/buclefor/index.html"
+  },
+  {
     title: "Curso de Fullstack",
     category: "cursofullstack",
     description: "Curso de desarrollo Fullstack. Cada lección tiene ilustración y audio. El texto aparece cuando hacés clic en el reproductor de esa lección.",
