@@ -132,6 +132,13 @@ const projects = [
     description: "La barra se queda arriba, se oscurece y el link activo cambia según la sección.",
     tech: ["HTML", "CSS", "JavaScript"],
     link: "UI y componentes/navbar-sticky/index.html"
+  }, 
+  {
+    title: "Scroll progress",
+    category: "frontend",
+    description: "Barra de progreso de scroll.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "UI y componentes/scroll-progress/index.html"
   },
   {
     title: "E-Commerce Landing Page",
