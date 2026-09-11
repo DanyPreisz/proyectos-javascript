@@ -139,6 +139,13 @@ const projects = [
     description: "Barra de progreso de scroll.",
     tech: ["HTML", "CSS", "JavaScript"],
     link: "UI y componentes/scroll-progress/index.html"
+  },  
+  {
+    title: "Loading blurry + spinner",
+    category: "frontend",
+    description: "Loading blurry + spinner.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "UI y componentes/loading/index.html"
   },
   {
     title: "E-Commerce Landing Page",
