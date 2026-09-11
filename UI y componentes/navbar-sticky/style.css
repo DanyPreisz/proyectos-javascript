@@ -1,0 +1,140 @@
+:root {
+  --bg: #14110e;
+  --card: #231e19;
+  --ink: #f4eee6;
+  --muted: #b3a89a;
+  --line: #3a322a;
+  --accent: #e8b86d;
+  --accent-ink: #2a1f12;
+  --nav-h: 72px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--ink);
+  font-family: Outfit, system-ui, sans-serif;
+  background:
+    radial-gradient(circle at 14% 10%, #3a2a18 0%, transparent 34%),
+    radial-gradient(circle at 90% 100%, #2a241c 0%, transparent 32%),
+    var(--bg);
+}
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: var(--nav-h);
+  padding: 0 24px;
+  border-bottom: 1px solid transparent;
+  background: transparent;
+  transition: background 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.nav.is-stuck {
+  border-bottom-color: var(--line);
+  background: color-mix(in srgb, var(--card) 94%, black);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+.logo {
+  color: var(--accent);
+  font-family: Fraunces, Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.nav nav {
+  display: flex;
+  gap: 6px;
+}
+
+.nav nav a {
+  padding: 8px 12px;
+  border-radius: 999px;
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.nav nav a:hover,
+.nav nav a.is-active {
+  background: #1c1814;
+  color: var(--accent);
+}
+
+.nav a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+main {
+  width: min(720px, calc(100% - 32px));
+  margin: 0 auto 64px;
+}
+
+.hero,
+section {
+  min-height: 75vh;
+  padding: 48px 8px 24px;
+}
+
+.eyebrow {
+  margin-bottom: 8px;
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+h1,
+h2 {
+  font-family: Fraunces, Georgia, serif;
+  letter-spacing: -0.03em;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 2.6rem);
+}
+
+h2 {
+  margin-bottom: 10px;
+  font-size: 1.8rem;
+}
+
+.lede,
+section p {
+  max-width: 46ch;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+code {
+  color: var(--accent);
+  font-size: 0.92em;
+}
+
+@media (max-width: 560px) {
+  .nav {
+    padding: 0 14px;
+  }
+
+  .nav nav a {
+    padding: 8px 8px;
+    font-size: 0.9rem;
+  }
+}

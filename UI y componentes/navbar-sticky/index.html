@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navbar sticky · Vanilla JS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="nav" id="nav">
+      <a class="logo" href="#inicio">Vanilla</a>
+      <nav>
+        <a href="#inicio">Inicio</a>
+        <a href="#seccion-2">Dos</a>
+        <a href="#seccion-3">Tres</a>
+        <a href="#seccion-4">Cuatro</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="inicio">
+        <p class="eyebrow">HTML · CSS · JS vanilla</p>
+        <h1>Navbar sticky</h1>
+        <p class="lede">
+          Bajá la página. La barra se queda arriba y, al scrollear, se compacta
+          y marca la sección activa.
+        </p>
+      </section>
+
+      <section id="seccion-2">
+        <h2>Sección dos</h2>
+        <p>
+          <code>position: sticky</code> fija el header. El JS solo agrega una
+          clase cuando <code>scrollY</code> pasa un umbral.
+        </p>
+      </section>
+
+      <section id="seccion-3">
+        <h2>Sección tres</h2>
+        <p>
+          Cada link apunta a un <code>id</code>. Con
+          <code>IntersectionObserver</code> se resalta el que corresponde.
+        </p>
+      </section>
+
+      <section id="seccion-4">
+        <h2>Sección cuatro</h2>
+        <p>
+          Fin de la demo. El link activo debería ser “Cuatro”. Subí y vas a ver
+          cómo cambia.
+        </p>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

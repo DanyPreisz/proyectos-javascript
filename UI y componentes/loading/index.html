@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loading blurry · Vanilla JS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="scene" data-scene>
+      <section class="content" data-content>
+        <p class="eyebrow">HTML · CSS · JS vanilla</p>
+        <h1>Loading blurry</h1>
+        <p>
+          La página arranca desenfocada. El porcentaje sube, el blur baja y el
+          spinner se va cuando termina.
+        </p>
+        <button class="btn" type="button" data-replay>Repetir carga</button>
+      </section>
+
+      <div class="loader" data-loader aria-live="polite">
+        <span class="spinner" aria-hidden="true"></span>
+        <p class="percent" data-percent>0%</p>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
