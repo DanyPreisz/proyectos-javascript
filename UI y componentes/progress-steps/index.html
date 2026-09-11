@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Progress steps · Vanilla JS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="page">
+      <p class="eyebrow">HTML · CSS · JS vanilla</p>
+      <h1>Progress steps</h1>
+      <p class="lede">Avanzá o volvé. La línea se llena hasta el paso activo.</p>
+
+      <div class="steps" data-steps>
+        <div class="bar" aria-hidden="true">
+          <span class="bar-fill" data-fill></span>
+        </div>
+        <button class="dot is-on" type="button" data-step="1" aria-current="step">1</button>
+        <button class="dot" type="button" data-step="2">2</button>
+        <button class="dot" type="button" data-step="3">3</button>
+        <button class="dot" type="button" data-step="4">4</button>
+      </div>
+
+      <p class="caption" data-caption>Paso 1 · Datos</p>
+
+      <div class="actions">
+        <button class="btn btn-ghost" type="button" data-prev disabled>Atrás</button>
+        <button class="btn" type="button" data-next>Siguiente</button>
+      </div>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
