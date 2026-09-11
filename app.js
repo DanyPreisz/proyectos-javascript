@@ -154,6 +154,13 @@ const projects = [
     description: "Primero ves bloques grises con brillo; a los 1,6s aparecen las cards. Simular carga lo repite.",
     tech: ["HTML", "CSS", "JavaScript"],
     link: "UI y componentes/skeleton/index.html"
+  },  
+  {
+    title: "Hidden search",
+    category: "frontend",
+    description: "Tocá la lupa: el input se estira. Escribí para filtrar. Escape lo cierra.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "UI y componentes/hidden-search/index.html"
   },
   {
     title: "E-Commerce Landing Page",
