@@ -147,6 +147,14 @@ const projects = [
     tech: ["HTML", "CSS", "JavaScript"],
     link: "UI y componentes/loading/index.html"
   },
+  
+  {
+    title: "Skeleton / placeholder",
+    category: "frontend",
+    description: "Primero ves bloques grises con brillo; a los 1,6s aparecen las cards. Simular carga lo repite.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "UI y componentes/skeleton/index.html"
+  },
   {
     title: "E-Commerce Landing Page",
     category: "frontend",
