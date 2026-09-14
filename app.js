@@ -230,7 +230,7 @@ const projects = [
     category: "frontend",
     description: "Autocomplete.",
     tech: ["HTML", "CSS", "JavaScript"],
-    link: "UI y componentes/autocompletetags-input/index.html"
+    link: "UI y componentes/autocomplete/index.html"
   },
   { 
     title: "E-Commerce Landing Page",
