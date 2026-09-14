@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Autocomplete · Vanilla JS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="page">
+      <p class="eyebrow">HTML · CSS · JS vanilla</p>
+      <h1>Autocomplete</h1>
+      <p class="lede">Escribí “mod”, “sna”, “cli”. Flechas y Enter eligen.</p>
+      <div class="box">
+        <input
+          id="q"
+          type="search"
+          placeholder="Buscar proyecto..."
+          autocomplete="off"
+          role="combobox"
+          aria-autocomplete="list"
+          aria-expanded="false"
+          aria-controls="list"
+        />
+        <ul id="list" role="listbox" hidden></ul>
+      </div>
+      <p class="pick" id="pick"></p>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
