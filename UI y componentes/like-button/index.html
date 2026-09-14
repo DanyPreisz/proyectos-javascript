@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Like button · Vanilla JS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="page">
+      <p class="eyebrow">HTML · CSS · JS vanilla</p>
+      <h1>Like button</h1>
+      <p class="lede">Toggle. El estado y el número quedan en localStorage.</p>
+
+      <article class="card">
+        <p>Post de prueba</p>
+        <button class="like" type="button" id="like" aria-pressed="false">
+          <span class="icon" aria-hidden="true">♥</span>
+          <span id="count">24</span>
+        </button>
+      </article>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
