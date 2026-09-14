@@ -219,6 +219,13 @@ const projects = [
     link: "UI y componentes/copy-clipboard/index.html"
   },
   { 
+    title: "Tags input",
+    category: "frontend",
+    description: "Tags input.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "UI y componentes/tags-input/index.html"
+  },
+  { 
     title: "E-Commerce Landing Page",
     category: "frontend",
     description: "Interfaz moderna con catálogo dinámico y carrito en LocalStorage.",
