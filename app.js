@@ -196,8 +196,15 @@ const projects = [
     description: "Double click heart.",
     tech: ["HTML", "CSS", "JavaScript"],
     link: "UI y componentes/double-click-heart/index.html"
-  },
+  },  
   {
+    title: "Star rating",
+    category: "frontend",
+    description: "Star rating.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "UI y componentes/star-rating/index.html"
+  },
+  { 
     title: "E-Commerce Landing Page",
     category: "frontend",
     description: "Interfaz moderna con catálogo dinámico y carrito en LocalStorage.",
