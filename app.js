@@ -226,6 +226,13 @@ const projects = [
     link: "UI y componentes/tags-input/index.html"
   },
   { 
+    title: "Autocomplete",
+    category: "frontend",
+    description: "Autocomplete.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "UI y componentes/autocompletetags-input/index.html"
+  },
+  { 
     title: "E-Commerce Landing Page",
     category: "frontend",
     description: "Interfaz moderna con catálogo dinámico y carrito en LocalStorage.",
