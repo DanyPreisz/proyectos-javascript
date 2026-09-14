@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Copy to clipboard · Vanilla JS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="page">
+      <p class="eyebrow">HTML · CSS · JS vanilla</p>
+      <h1>Copy to clipboard</h1>
+      <p class="lede">Copiá el texto. El botón avisa si salió bien.</p>
+
+      <div class="row">
+        <input id="text" type="text" value="https://example.com/invite/abc123" />
+        <button class="btn" type="button" id="copy">Copiar</button>
+      </div>
+      <p class="msg" id="msg" role="status"></p>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
