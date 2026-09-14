@@ -182,6 +182,13 @@ const projects = [
     description: "Progress steps.",
     tech: ["HTML", "CSS", "JavaScript"],
     link: "UI y componentes/progress-steps/index.html"
+  },  
+  {
+    title: "Button ripple effect",
+    category: "frontend",
+    description: "Button ripple effect.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "UI y componentes/ripple/index.html"
   },
   {
     title: "E-Commerce Landing Page",
