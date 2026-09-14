@@ -204,6 +204,13 @@ const projects = [
     tech: ["HTML", "CSS", "JavaScript"],
     link: "UI y componentes/star-rating/index.html"
   },
+  {
+    title: "Like button",
+    category: "frontend",
+    description: "Like button.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "UI y componentes/like-button/index.html"
+  },
   { 
     title: "E-Commerce Landing Page",
     category: "frontend",
