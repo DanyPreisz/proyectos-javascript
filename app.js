@@ -189,6 +189,13 @@ const projects = [
     description: "Button ripple effect.",
     tech: ["HTML", "CSS", "JavaScript"],
     link: "UI y componentes/ripple/index.html"
+  },  
+  {
+    title: "Double click heart",
+    category: "frontend",
+    description: "Double click heart.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "UI y componentes/double-click-heart/index.html"
   },
   {
     title: "E-Commerce Landing Page",
