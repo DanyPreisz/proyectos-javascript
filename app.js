@@ -210,6 +210,13 @@ const projects = [
     description: "Like button.",
     tech: ["HTML", "CSS", "JavaScript"],
     link: "UI y componentes/like-button/index.html"
+  },  
+  { 
+    title: "Copy to clipboard",
+    category: "frontend",
+    description: "Copy to clipboard.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "UI y componentes/copy-clipboard/index.html"
   },
   { 
     title: "E-Commerce Landing Page",
