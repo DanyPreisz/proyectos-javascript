@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Estadísticas de Ventas de Automóviles</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .card {
+      background: white;
+      padding: 24px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 380px;
+    }
+
+    h2 {
+      margin: 0 0 8px 0;
+      font-size: 1.2rem;
+      text-align: center;
+      color: #1e293b;
+    }
+
+    p.subtitle {
+      margin: 0 0 16px 0;
+      font-size: 0.85rem;
+      text-align: center;
+      color: #64748b;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    input {
+      flex: 1;
+      padding: 8px;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      font-size: 0.95rem;
+    }
+
+    button {
+      padding: 8px 14px;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .btn-add {
+      background-color: #0284c7;
+      color: white;
+    }
+
+    .btn-add:hover {
+      background-color: #0369a1;
+    }
+
+    .btn-finish {
+      width: 100%;
+      background-color: #e11d48;
+      color: white;
+      margin-top: 4px;
+      padding: 10px;
+    }
+
+    .btn-finish:hover {
+      background-color: #be123c;
+    }
+
+    .history {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      padding: 8px;
+      font-size: 0.85rem;
+      color: #475569;
+      margin-top: 10px;
+      max-height: 80px;
+      overflow-y: auto;
+    }
+
+    .result {
+      margin-top: 16px;
+      padding: 14px;
+      background-color: #f1f5f9;
+      border-radius: 6px;
+      display: none;
+      font-size: 0.9rem;
+    }
+
+    .result p {
+      margin: 6px 0;
+    }
+
+    .highlight {
+      font-weight: bold;
+      color: #0f172a;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Registro de Ventas Mensuales</h2>
+    <p class="subtitle">Ingrese cantidades mes a mes. Use -1 para finalizar.</p>
+
+    <div class="form-row">
+      <input type="number" id="inputVenta" placeholder="Ej: 12500 o -1" />
+      <button class="btn-add" id="btnCargar">Cargar</button>
+    </div>
+
+    <button class="btn-finish" id="btnFinalizar">Finalizar Carga (-1)</button>
+
+    <div class="history" id="historial">
+      Datos ingresados: ninguno
+    </div>
+
+    <div class="result" id="panelResultado">
+      <p>Meses [0 a 9.999 unidades]: <span class="highlight" id="lblC1"></span></p>
+      <p>Meses [10.000 a 14.999 unidades]: <span class="highlight" id="lblC2"></span></p>
+      <p>Meses [15.000 unidades o más]: <span class="highlight" id="lblC3"></span></p>
+      <p>Total general vendido: <span class="highlight" id="lblTotal"></span> vehículos</p>
+      <p style="border-top: 1px solid #cbd5e1; padding-top: 6px;">
+        Mes sin ventas (0 unidades): <strong id="lblCero"></strong>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // Variables de estado del proceso
+    let c1 = 0;
+    let c2 = 0;
+    let c3 = 0;
+    let t = 0;
+    let ok = false;
+    const historialDatos = [];
+
+    const inputVenta = document.querySelector("#inputVenta");
+    const btnCargar = document.querySelector("#btnCargar");
+    const btnFinalizar = document.querySelector("#btnFinalizar");
+    const panelResultado = document.querySelector("#panelResultado");
+    const historial = document.querySelector("#historial");
+
+    function procesarDato(valor) {
+      if (valor === -1) {
+        cerrarCarga();
+        return;
+      }
+
+      if (valor < 0) {
+        alert("Las cantidades no pueden ser negativas. Use -1 para cerrar.");
+        return;
+      }
+
+      // Proceso acumulador
+      t += valor;
+
+      // Bandera de mes con 0 ventas
+      if (valor === 0) {
+        ok = true;
+      }
+
+      // Contadores por intervalo
+      if (valor < 10000) {
+        c1++;
+      } else if (valor < 15000) {
+        c2++;
+      } else {
+        c3++;
+      }
+
+      historialDatos.push(valor);
+      historial.textContent = `Datos ingresados (${historialDatos.length}): ${historialDatos.join(", ")}`;
+      inputVenta.value = "";
+      inputVenta.focus();
+    }
+
+    function cerrarCarga() {
+      document.querySelector("#lblC1").textContent = c1;
+      document.querySelector("#lblC2").textContent = c2;
+      document.querySelector("#lblC3").textContent = c3;
+      document.querySelector("#lblTotal").textContent = t.toLocaleString("es-AR");
+      document.querySelector("#lblCero").textContent = ok ? "Sí se registraron meses con 0 ventas" : "No se registraron meses con 0 ventas";
+
+      panelResultado.style.display = "block";
+      btnCargar.disabled = true;
+      btnFinalizar.disabled = true;
+      inputVenta.disabled = true;
+    }
+
+    btnCargar.addEventListener("click", () => {
+      const val = inputVenta.value.trim();
+      if (val === "") return;
+      procesarDato(parseInt(val, 10));
+    });
+
+    inputVenta.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        btnCargar.click();
+      }
+    });
+
+    btnFinalizar.addEventListener("click", () => {
+      cerrarCarga();
+    });
+  </script>
+
+</body>
+</html>
