@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Formulario multi-paso · Vanilla JS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #14110e;
+        --card: #231e19;
+        --ink: #f4eee6;
+        --muted: #b3a89a;
+        --line: #3a322a;
+        --accent: #e8b86d;
+        --accent-ink: #2a1f12;
+        --ok: #7dba7a;
+        --danger: #e07a6a;
+        --shadow: 0 28px 70px rgba(0, 0, 0, 0.45);
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 32px 16px;
+        color: var(--ink);
+        font-family: Outfit, system-ui, sans-serif;
+        background:
+          radial-gradient(circle at 14% 10%, #3a2a18 0%, transparent 34%),
+          radial-gradient(circle at 90% 100%, #2a241c 0%, transparent 32%),
+          var(--bg);
+      }
+      .page {
+        width: min(460px, 100%);
+        padding: 32px 28px;
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        background: color-mix(in srgb, var(--card) 92%, black);
+        box-shadow: var(--shadow);
+      }
+      .eyebrow {
+        margin-bottom: 8px;
+        color: var(--accent);
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+      h1 {
+        font-family: Fraunces, Georgia, serif;
+        font-size: clamp(1.7rem, 4vw, 2.1rem);
+      }
+      .lede { margin: 8px 0 16px; color: var(--muted); line-height: 1.5; }
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+        margin-bottom: 18px;
+        list-style: none;
+      }
+      .steps li {
+        padding: 8px 6px;
+        border-radius: 999px;
+        background: #1c1814;
+        color: var(--muted);
+        font-size: 0.8rem;
+        text-align: center;
+      }
+      .steps li.is-on { background: var(--accent); color: var(--accent-ink); }
+      .steps li.is-done { outline: 1px solid var(--accent); color: var(--accent); }
+      label { display: grid; gap: 6px; margin-bottom: 12px; color: var(--muted); font-size: 0.9rem; }
+      input {
+        height: 44px;
+        padding: 0 12px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: #1c1814;
+        color: var(--ink);
+        font: inherit;
+        outline: none;
+      }
+      input:focus { border-color: var(--accent); }
+      label.is-bad input { border-color: var(--danger); }
+      label small { min-height: 1.1em; color: var(--danger); font-size: 0.78rem; }
+      .summary { display: grid; gap: 8px; margin-bottom: 10px; list-style: none; color: var(--muted); }
+      .summary strong { color: var(--ink); }
+      .ok { color: var(--ok); }
+      .nav { display: flex; justify-content: space-between; gap: 8px; margin-top: 8px; }
+      .btn, .ghost {
+        height: 44px;
+        padding: 0 16px;
+        border-radius: 12px;
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      .btn { border: 0; background: var(--accent); color: var(--accent-ink); margin-left: auto; }
+      .ghost { border: 1px solid var(--line); background: transparent; color: var(--ink); }
+      .panel[hidden] { display: none; }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <p class="eyebrow">HTML · CSS · JS vanilla</p>
+      <h1>Formulario multi-paso</h1>
+      <p class="lede">3 pasos. Cada uno valida antes de seguir.</p>
+      <ol class="steps" id="steps" aria-label="Progreso">
+        <li class="is-on">Datos</li>
+        <li>Cuenta</li>
+        <li>Confirmar</li>
+      </ol>
+      <form id="form" novalidate>
+        <section class="panel" data-step="0">
+          <label>Nombre <input id="name" type="text" autocomplete="name" /><small></small></label>
+          <label>Email <input id="email" type="email" autocomplete="email" /><small></small></label>
+        </section>
+        <section class="panel" data-step="1" hidden>
+          <label>Usuario <input id="user" type="text" autocomplete="username" /><small></small></label>
+          <label>Contraseña <input id="pass" type="password" autocomplete="new-password" /><small></small></label>
+        </section>
+        <section class="panel" data-step="2" hidden>
+          <ul class="summary" id="summary"></ul>
+          <p class="ok" id="done" hidden>Listo. En un sitio real acá iría el POST.</p>
+        </section>
+        <div class="nav">
+          <button class="ghost" type="button" id="back" hidden>Atrás</button>
+          <button class="btn" type="button" id="next">Siguiente</button>
+        </div>
+      </form>
+    </main>
+    <script>
+      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const panels = [...document.querySelectorAll(".panel")];
+      const pills = [...document.querySelectorAll("#steps li")];
+      const back = document.querySelector("#back");
+      const next = document.querySelector("#next");
+      const summary = document.querySelector("#summary");
+      const done = document.querySelector("#done");
+      const fields = {
+        name: document.querySelector("#name"),
+        email: document.querySelector("#email"),
+        user: document.querySelector("#user"),
+        pass: document.querySelector("#pass"),
+      };
+      let step = 0;
+
+      next.addEventListener("click", () => {
+        if (step < 2) {
+          if (!validate(step)) return;
+          go(step + 1);
+        } else {
+          done.hidden = false;
+          next.disabled = true;
+        }
+      });
+      back.addEventListener("click", () => { if (step > 0) go(step - 1); });
+
+      function validate(n) {
+        if (n === 0) {
+          return check(fields.name, [
+            [!fields.name.value.trim(), "El nombre es obligatorio."],
+            [fields.name.value.trim().length < 2, "Mínimo 2 caracteres."],
+          ]) & check(fields.email, [
+            [!fields.email.value.trim(), "El email es obligatorio."],
+            [!emailOk.test(fields.email.value.trim()), "Email no válido."],
+          ]);
+        }
+        if (n === 1) {
+          return check(fields.user, [
+            [!fields.user.value.trim(), "El usuario es obligatorio."],
+            [fields.user.value.trim().length < 3, "Mínimo 3 caracteres."],
+          ]) & check(fields.pass, [
+            [!fields.pass.value, "La contraseña es obligatoria."],
+            [fields.pass.value.length < 6, "Mínimo 6 caracteres."],
+          ]);
+        }
+        return true;
+      }
+
+      function check(input, rules) {
+        const fail = rules.find(([cond]) => cond);
+        const label = input.closest("label");
+        const small = label.querySelector("small");
+        if (fail) {
+          label.classList.add("is-bad");
+          small.textContent = fail[1];
+          return 0;
+        }
+        label.classList.remove("is-bad");
+        small.textContent = "";
+        return 1;
+      }
+
+      function go(n) {
+        step = n;
+        panels.forEach((panel, i) => { panel.hidden = i !== step; });
+        pills.forEach((pill, i) => {
+          pill.classList.toggle("is-on", i === step);
+          pill.classList.toggle("is-done", i < step);
+        });
+        back.hidden = step === 0;
+        next.textContent = step === 2 ? "Enviar" : "Siguiente";
+        next.disabled = false;
+        done.hidden = true;
+        if (step === 2) fillSummary();
+        const first = panels[step].querySelector("input");
+        if (first) first.focus();
+      }
+
+      function fillSummary() {
+        const rows = [
+          ["Nombre", fields.name.value.trim()],
+          ["Email", fields.email.value.trim()],
+          ["Usuario", fields.user.value.trim()],
+          ["Contraseña", "•".repeat(fields.pass.value.length)],
+        ];
+        summary.innerHTML = rows
+          .map(([k, v]) => `<li>${k}: <strong>${escapeHtml(v)}</strong></li>`)
+          .join("");
+      }
+
+      function escapeHtml(text) {
+        return text.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+      }
+    </script>
+  </body>
+</html>
