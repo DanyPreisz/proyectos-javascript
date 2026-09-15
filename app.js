@@ -15,6 +15,15 @@ const projects = [
     link: "JS/buclefor/index.html"
   },
   {
+    title: "Estadísticas de Ventas de Automóviles",
+    category: "javascript",
+    description: "Este es un problema típico de procesamiento de una sucesión de números enteros con fines estadísticos.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "JS/Estadísticas de Ventas de Automóviles/Estadísticas de Ventas de Automóviles.html"
+  },
+
+  Estadísticas de Ventas de Automóviles
+  {
     title: "Curso de Fullstack",
     category: "cursofullstack",
     description: "Curso de desarrollo Fullstack. Cada lección tiene ilustración y audio. El texto aparece cuando hacés clic en el reproductor de esa lección.",
