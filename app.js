@@ -245,6 +245,13 @@ const projects = [
     description: "Formulario multi-paso.",
     tech: ["HTML", "CSS", "JavaScript"],
     link: "UI y componentes/Formulario multi-paso/index.html"
+  },  
+  { 
+    title: "Form wave (labels animados)",
+    category: "frontend",
+    description: "Form wave (labels animados).",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "UI y componentes//Form wave (labels animados)/index.html"
   },
   { 
     title: "E-Commerce Landing Page",
