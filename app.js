@@ -240,6 +240,13 @@ const projects = [
     link: "UI y componentes/autocomplete/index.html"
   },
   { 
+    title: "Formulario multi-paso",
+    category: "frontend",
+    description: "Formulario multi-paso.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "UI y componentes/Formulario multi-paso/index.html"
+  },
+  { 
     title: "E-Commerce Landing Page",
     category: "frontend",
     description: "Interfaz moderna con catálogo dinámico y carrito en LocalStorage.",
