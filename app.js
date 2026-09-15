@@ -20,9 +20,7 @@ const projects = [
     description: "Este es un problema típico de procesamiento de una sucesión de números enteros con fines estadísticos.",
     tech: ["HTML", "CSS", "JavaScript"],
     link: "JS/Estadísticas de Ventas de Automóviles/Estadísticas de Ventas de Automóviles.html"
-  },
-
-  Estadísticas de Ventas de Automóviles
+  },  
   {
     title: "Curso de Fullstack",
     category: "cursofullstack",
