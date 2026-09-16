@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>UTN FRC - Registro PPS</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 24px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 360px;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 1.15rem;
+      text-align: center;
+      color: #1a365d;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      margin-bottom: 4px;
+      color: #4a5568;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #cbd5e0;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 0.95rem;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #2b6cb0;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+
+    button:hover {
+      background-color: #2c5282;
+    }
+
+    .console-box {
+      margin-top: 16px;
+      padding: 12px;
+      background-color: #1a202c;
+      color: #68d391;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 0.85rem;
+      border-radius: 4px;
+      display: none;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>UTN Córdoba - Sistemas (PPS)</h2>
+
+    <div class="form-group">
+      <label for="estudiante">Nombre del estudiante:</label>
+      <input type="text" id="estudiante" placeholder="Ej: Lucas Benítez" />
+    </div>
+
+    <div class="form-group">
+      <label for="profesor">Profesor responsable:</label>
+      <input type="text" id="profesor" placeholder="Ej: Martín Rodríguez" />
+    </div>
+
+    <div class="form-group">
+      <label for="promedio">Promedio general (con decimales):</label>
+      <input type="number" id="promedio" step="0.01" min="0" max="10" placeholder="Ej: 8.67" />
+    </div>
+
+    <button id="btnVerificar">Cargar y Verificar</button>
+
+    <div class="console-box" id="consola">
+      <div>> [SALIDA CONSOLA]</div>
+      <div id="outEstudiante"></div>
+      <div id="outProfesor"></div>
+      <div id="outPromedio"></div>
+    </div>
+  </div>
+
+  <script>
+    const btnVerificar = document.querySelector("#btnVerificar");
+    const inputEstudiante = document.querySelector("#estudiante");
+    const inputProfesor = document.querySelector("#profesor");
+    const inputPromedio = document.querySelector("#promedio");
+
+    const consola = document.querySelector("#consola");
+    const outEstudiante = document.querySelector("#outEstudiante");
+    const outProfesor = document.querySelector("#outProfesor");
+    const outPromedio = document.querySelector("#outPromedio");
+
+    btnVerificar.addEventListener("click", () => {
+      // 1. Datos de entrada
+      const estudiante = inputEstudiante.value.trim();
+      const profesor = inputProfesor.value.trim();
+      const promVal = inputPromedio.value.trim();
+
+      if (!estudiante || !profesor || promVal === "") {
+        alert("Por favor, complete todos los campos.");
+        return;
+      }
+
+      const promedio = parseFloat(promVal);
+
+      // 2. Procesos
+      const estudianteFmt = `est. ${estudiante}`;
+      const profesorFmt = `prof. ${profesor}`;
+      const promedioRedondeado = Math.round(promedio);
+
+      // 3. Salida por consola del navegador (requerimiento técnico estricto)
+      console.log("--- Verificación UTN FRC ---");
+      console.log(`Estudiante: ${estudianteFmt}`);
+      console.log(`Supervisor: ${profesorFmt}`);
+      console.log(`Promedio redondeado: ${promedioRedondeado}`);
+
+      // Reflejo en la consola visual del componente
+      outEstudiante.textContent = `Estudiante : ${estudianteFmt}`;
+      outProfesor.textContent   = `Supervisor : ${profesorFmt}`;
+      outPromedio.textContent   = `Promedio   : ${promedioRedondeado}`;
+      consola.style.display = "block";
+    });
+  </script>
+
+</body>
+</html>
