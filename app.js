@@ -15,6 +15,13 @@ const projects = [
     link: "JS/buclefor/index.html"
   },  
   {
+    title: "Distribución Postal",
+    category: "javascript",
+    description: "Distribución Postal.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "JS/Distribución Postal/index.html"
+  },  
+  {
     title: "Calculadora de Alquiler de Autos",
     category: "javascript",
     description: "Calculadora de Alquiler de Autos.",
