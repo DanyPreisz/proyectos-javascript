@@ -251,7 +251,14 @@ const projects = [
     category: "frontend",
     description: "Form wave (labels animados).",
     tech: ["HTML", "CSS", "JavaScript"],
-    link: "UI y componentes//Form wave (labels animados)/index.html"
+    link: "UI y componentes/Form wave (labels animados)/index.html"
+  },
+  { 
+    title: "Split landing",
+    category: "frontend",
+    description: "Split landing.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "UI y componentes/split/index.html"
   },
   { 
     title: "E-Commerce Landing Page",
