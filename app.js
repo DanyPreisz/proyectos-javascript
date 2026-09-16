@@ -20,7 +20,14 @@ const projects = [
     description: "Este ejemplo interactivo en HTML utiliza un bucle for para generar una tabla de multiplicar en tiempo real e insertar los resultados en el DOM.",
     tech: ["HTML", "CSS", "JavaScript"],
     link: "JS/buclefor/index.html"
-  },    
+  },      
+  {
+    title: " Calculadora de Descuentos",
+    category: "javascript",
+    description: "Calculadora de Descuentos.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "JS/Calculadora de Descuentos/index.html"
+  },  
   {
     title: "Ordenador de Dos Números",
     category: "javascript",
