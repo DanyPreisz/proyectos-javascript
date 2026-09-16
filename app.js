@@ -13,7 +13,14 @@ const projects = [
     description: "Este ejemplo interactivo en HTML utiliza un bucle for para generar una tabla de multiplicar en tiempo real e insertar los resultados en el DOM.",
     tech: ["HTML", "CSS", "JavaScript"],
     link: "JS/buclefor/index.html"
-  },
+  },  
+  {
+    title: "Condición Académica Universitaria",
+    category: "javascript",
+    description: "Condición Académica Universitaria.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "JS/Condición Académica Universitaria/index.html"
+  },  
   {
     title: "Estadísticas de Ventas de Automóviles",
     category: "javascript",
