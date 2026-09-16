@@ -8,6 +8,13 @@ const projects = [
     link: "JS/decisiones/index.html"
   },
   {
+    title: "Bucle while",
+    category: "javascript",
+    description: "Este ejemplo interactivo implementa un contador regresivo (despegue espacial) utilizando un bucle while para procesar y listar los pasos en pantalla hasta llegar a cero.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "JS/bucle while/index.html"
+  },  
+  {
     title: "Bucle For",
     category: "javascript",
     description: "Este ejemplo interactivo en HTML utiliza un bucle for para generar una tabla de multiplicar en tiempo real e insertar los resultados en el DOM.",
