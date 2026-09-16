@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ordenador de Dos Números</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .card {
+      background: #ffffff;
+      padding: 24px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 320px;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      text-align: center;
+      color: #333;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+      color: #555;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 1rem;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .result {
+      margin-top: 16px;
+      padding: 12px;
+      background-color: #e9ecef;
+      border-radius: 4px;
+      display: none;
+    }
+
+    .result p {
+      margin: 6px 0;
+      font-size: 0.95rem;
+    }
+
+    .highlight {
+      font-weight: bold;
+      color: #007bff;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Ordenar Dos Números</h2>
+
+    <div class="form-group">
+      <label for="n1">Primer número (n1):</label>
+      <input type="number" id="n1" step="1" placeholder="Ej: 14" />
+    </div>
+
+    <div class="form-group">
+      <label for="n2">Segundo número (n2):</label>
+      <input type="number" id="n2" step="1" placeholder="Ej: 5" />
+    </div>
+
+    <button id="btnProcesar">Calcular y Ordenar</button>
+
+    <div class="result" id="panelResultado">
+      <p>Menor (men): <span class="highlight" id="lblMen"></span></p>
+      <p>Mayor (may): <span class="highlight" id="lblMay"></span></p>
+      <p>Listado ordenado: <span class="highlight" id="lblLista"></span></p>
+    </div>
+  </div>
+
+  <script>
+    // 1. Selección de nodos del DOM
+    const inputN1 = document.querySelector("#n1");
+    const inputN2 = document.querySelector("#n2");
+    const btnProcesar = document.querySelector("#btnProcesar");
+    const panelResultado = document.querySelector("#panelResultado");
+    const lblMen = document.querySelector("#lblMen");
+    const lblMay = document.querySelector("#lblMay");
+    const lblLista = document.querySelector("#lblLista");
+
+    // 2. Escucha del evento de cálculo
+    btnProcesar.addEventListener("click", () => {
+      // Captura y validación de los datos de entrada
+      const val1 = inputN1.value.trim();
+      const val2 = inputN2.value.trim();
+
+      if (val1 === "" || val2 === "") {
+        alert("Por favor, completa ambos campos numéricos.");
+        return;
+      }
+
+      // Datos: Dos enteros n1 y n2
+      const n1 = parseInt(val1, 10);
+      const n2 = parseInt(val2, 10);
+
+      // Procesos: Asignación condicional a las variables 'men' y 'may'
+      let men;
+      let may;
+
+      if (n1 <= n2) {
+        men = n1;
+        may = n2;
+      } else {
+        men = n2;
+        may = n1;
+      }
+
+      // Resultados: Mostrar men y may en orden ascendente
+      lblMen.textContent = men;
+      lblMay.textContent = may;
+      lblLista.textContent = `${men}, ${may}`;
+
+      panelResultado.style.display = "block";
+    });
+  </script>
+
+</body>
+</html>
