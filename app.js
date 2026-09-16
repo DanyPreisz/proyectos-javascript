@@ -15,6 +15,13 @@ const projects = [
     link: "JS/buclefor/index.html"
   },  
   {
+    title: "Calculadora de Alquiler de Autos",
+    category: "javascript",
+    description: "Calculadora de Alquiler de Autos.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "JS/Calculadora de Alquiler de Autos/index.html"
+  },  
+  {
     title: "Condición Académica Universitaria",
     category: "javascript",
     description: "Condición Académica Universitaria.",
