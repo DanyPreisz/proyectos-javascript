@@ -20,6 +20,13 @@ const projects = [
     description: "Este ejemplo interactivo en HTML utiliza un bucle for para generar una tabla de multiplicar en tiempo real e insertar los resultados en el DOM.",
     tech: ["HTML", "CSS", "JavaScript"],
     link: "JS/buclefor/index.html"
+  },    
+  {
+    title: "Ordenador de Dos Números",
+    category: "javascript",
+    description: "Ordenador de Dos Números.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "JS/Ordenador de Dos Números/index.html"
   },  
   {
     title: "Registro",
