@@ -15,6 +15,13 @@ const projects = [
     link: "JS/buclefor/index.html"
   },  
   {
+    title: "Registro",
+    category: "javascript",
+    description: "Registro de alumnos.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "JS/Registro/index.html"
+  },  
+  {
     title: "Distribución Postal",
     category: "javascript",
     description: "Distribución Postal.",
