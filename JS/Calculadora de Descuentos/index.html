@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Calculadora de Descuentos por Cantidad</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .card {
+      background: white;
+      padding: 24px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 320px;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .result {
+      margin-top: 16px;
+      padding: 12px;
+      background-color: #e9ecef;
+      border-radius: 4px;
+      display: none;
+    }
+
+    .result p {
+      margin: 6px 0;
+      font-size: 0.95rem;
+    }
+
+    .highlight {
+      font-weight: bold;
+      color: #007bff;
+    }
+
+    .total-final {
+      font-size: 1.05rem;
+      font-weight: bold;
+      color: #28a745;
+      border-top: 1px solid #ced4da;
+      padding-top: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Facturación con Descuento</h2>
+
+    <div class="form-group">
+      <label for="cantidad">Cantidad de unidades:</label>
+      <input type="number" id="cantidad" min="1" step="1" placeholder="Ej: 8" />
+    </div>
+
+    <div class="form-group">
+      <label for="precio">Precio unitario ($):</label>
+      <input type="number" id="precio" min="0.01" step="0.01" placeholder="Ej: 150.00" />
+    </div>
+
+    <button id="btnCalcular">Calcular Total</button>
+
+    <div class="result" id="panelResultado">
+      <p>Subtotal Bruto: $<span class="highlight" id="lblBruto"></span></p>
+      <p>Descuento aplicado: <span class="highlight" id="lblPorcentaje"></span>%</p>
+      <p>Ahorro: -$<span class="highlight" id="lblDescuento"></span></p>
+      <p class="total-final">Total a Pagar: $<span id="lblNeto"></span></p>
+    </div>
+  </div>
+
+  <script>
+    const btnCalcular = document.querySelector("#btnCalcular");
+    const inputCantidad = document.querySelector("#cantidad");
+    const inputPrecio = document.querySelector("#precio");
+    const panelResultado = document.querySelector("#panelResultado");
+    const lblBruto = document.querySelector("#lblBruto");
+    const lblPorcentaje = document.querySelector("#lblPorcentaje");
+    const lblDescuento = document.querySelector("#lblDescuento");
+    const lblNeto = document.querySelector("#lblNeto");
+
+    btnCalcular.addEventListener("click", () => {
+      // 1. Datos: Captura y validación
+      const cantVal = inputCantidad.value;
+      const precVal = inputPrecio.value;
+
+      if (cantVal === "" || precVal === "") {
+        alert("Por favor, completa ambos campos.");
+        return;
+      }
+
+      const cantidad = parseInt(cantVal, 10);
+      const precio = parseFloat(precVal);
+
+      if (cantidad <= 0 || precio <= 0) {
+        alert("Los valores deben ser mayores a cero.");
+        return;
+      }
+
+      // 2. Procesos: Cálculo bruto y determinación del porcentaje según volumen
+      const bruto = cantidad * precio;
+      let porcentaje = 0;
+
+      if (cantidad >= 12) {
+        porcentaje = 20;
+      } else if (cantidad >= 6) {
+        porcentaje = 10;
+      } else {
+        porcentaje = 0;
+      }
+
+      const montoDescuento = (bruto * porcentaje) / 100;
+      const neto = bruto - montoDescuento;
+
+      // 3. Resultados: Impresión formateada a dos decimales
+      lblBruto.textContent = bruto.toFixed(2);
+      lblPorcentaje.textContent = porcentaje;
+      lblDescuento.textContent = montoDescuento.toFixed(2);
+      lblNeto.textContent = neto.toFixed(2);
+
+      panelResultado.style.display = "block";
+    });
+  </script>
+
+</body>
+</html>
