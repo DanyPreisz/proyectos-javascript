@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bucle while en JavaScript</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .card {
+      background: white;
+      padding: 24px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 320px;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      text-align: center;
+      color: #333;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+      color: #555;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 1rem;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    ul {
+      margin-top: 16px;
+      padding-left: 0;
+      list-style: none;
+      max-height: 180px;
+      overflow-y: auto;
+      border: 1px solid #e9ecef;
+      border-radius: 4px;
+    }
+
+    li {
+      padding: 6px 10px;
+      border-bottom: 1px solid #f1f3f5;
+      font-size: 0.9rem;
+    }
+
+    li:last-child {
+      border-bottom: none;
+      font-weight: bold;
+      color: #28a745;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Cuenta Regresiva</h2>
+
+    <div class="form-group">
+      <label for="numero">Iniciar cuenta en:</label>
+      <input type="number" id="numero" min="1" max="50" value="5" />
+    </div>
+
+    <button id="btnEjecutar">Iniciar Secuencia</button>
+
+    <ul id="listaSecuencia"></ul>
+  </div>
+
+  <script>
+    const inputNumero = document.querySelector("#numero");
+    const btnEjecutar = document.querySelector("#btnEjecutar");
+    const lista = document.querySelector("#listaSecuencia");
+
+    btnEjecutar.addEventListener("click", () => {
+      let contador = parseInt(inputNumero.value, 10);
+
+      // Validación simple
+      if (isNaN(contador) || contador <= 0) {
+        alert("Ingresa un número entero mayor a 0.");
+        return;
+      }
+
+      // Limpiar resultados anteriores
+      lista.innerHTML = "";
+
+      // 1. Condición del bucle: se ejecuta mientras 'contador' sea mayor que 0
+      while (contador > 0) {
+        const item = document.createElement("li");
+        item.textContent = `T-menos: ${contador}s`;
+        lista.appendChild(item);
+
+        // 2. Decremento (paso crítico para evitar bucle infinito)
+        contador--;
+      }
+
+      // Elemento final tras finalizar el bucle
+      const itemFinal = document.createElement("li");
+      itemFinal.textContent = "🚀 ¡Despegue!";
+      lista.appendChild(itemFinal);
+    });
+  </script>
+
+</body>
+</html>
