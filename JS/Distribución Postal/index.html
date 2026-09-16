@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Distribución Postal - Asignación de Boxes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .card {
+      background: white;
+      padding: 24px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 340px;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      text-align: center;
+      color: #333;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.85rem;
+      margin-bottom: 4px;
+      color: #555;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 0.95rem;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .result {
+      margin-top: 16px;
+      padding: 12px;
+      background-color: #e9ecef;
+      border-radius: 4px;
+      display: none;
+    }
+
+    .result p {
+      margin: 6px 0;
+      font-size: 0.9rem;
+    }
+
+    .highlight {
+      font-weight: bold;
+      color: #007bff;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Oficina Postal - Distribución</h2>
+
+    <div class="form-group">
+      <label for="cp1">Código Postal Carta 1:</label>
+      <input type="number" id="cp1" min="0" step="1" placeholder="Ej: 5000" />
+    </div>
+
+    <div class="form-group">
+      <label for="cp2">Código Postal Carta 2:</label>
+      <input type="number" id="cp2" min="0" step="1" placeholder="Ej: 5001" />
+    </div>
+
+    <div class="form-group">
+      <label for="cp3">Código Postal Carta 3:</label>
+      <input type="number" id="cp3" min="0" step="1" placeholder="Ej: 5024" />
+    </div>
+
+    <button id="btnDistribuir">Calcular Casillas</button>
+
+    <div class="result" id="panelResultado">
+      <p>Carta 1: Casilla <span class="highlight" id="box1"></span></p>
+      <p>Carta 2: Casilla <span class="highlight" id="box2"></span></p>
+      <p>Carta 3: Casilla <span class="highlight" id="box3"></span></p>
+    </div>
+  </div>
+
+  <script>
+    const btnDistribuir = document.querySelector("#btnDistribuir");
+    const inputCp1 = document.querySelector("#cp1");
+    const inputCp2 = document.querySelector("#cp2");
+    const inputCp3 = document.querySelector("#cp3");
+    const panelResultado = document.querySelector("#panelResultado");
+    const lblBox1 = document.querySelector("#box1");
+    const lblBox2 = document.querySelector("#box2");
+    const lblBox3 = document.querySelector("#box3");
+
+    btnDistribuir.addEventListener("click", () => {
+      // 1. Datos
+      const val1 = inputCp1.value.trim();
+      const val2 = inputCp2.value.trim();
+      const val3 = inputCp3.value.trim();
+
+      if (!val1 || !val2 || !val3) {
+        alert("Por favor, ingrese el código postal de las tres cartas.");
+        return;
+      }
+
+      const cp1 = parseInt(val1, 10);
+      const cp2 = parseInt(val2, 10);
+      const cp3 = parseInt(val3, 10);
+
+      // 2. Procesos (Módulo 5 genera los rangos 0, 1, 2, 3, 4)
+      const box1 = cp1 % 5;
+      const box2 = cp2 % 5;
+      const box3 = cp3 % 5;
+
+      // 3. Resultados
+      lblBox1.textContent = box1;
+      lblBox2.textContent = box2;
+      lblBox3.textContent = box3;
+
+      panelResultado.style.display = "block";
+    });
+  </script>
+
+</body>
+</html>
