@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rotating nav · Vanilla JS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="circle">
+      <button class="circle-btn" id="toggle" type="button" aria-expanded="false" aria-label="Abrir menú">
+        <span class="open">☰</span>
+        <span class="close">✕</span>
+      </button>
+    </div>
+
+    <nav class="menu" id="menu">
+      <a href="#inicio">Inicio</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+
+    <div class="page" id="page">
+      <p class="eyebrow">HTML · CSS · JS vanilla</p>
+      <h1 id="inicio">Rotating nav</h1>
+      <p class="lede">
+        Tocá el círculo de la esquina. La página gira y el menú aparece a la izquierda.
+      </p>
+      <h2 id="proyectos">Proyectos</h2>
+      <p>
+        Lista de tareas, modal, acordeón, tabs, toasts, navbar sticky y el resto
+        de la serie van acá como contenido de ejemplo.
+      </p>
+      <h2 id="contacto">Contacto</h2>
+      <p>Cerrá el menú con la cruz o con Escape.</p>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
