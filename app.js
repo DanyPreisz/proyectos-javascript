@@ -314,7 +314,7 @@ const projects = [
     category: "frontend",
     description: "Rotating / animated navigation.",
     tech: ["HTML", "CSS", "JavaScript"],
-    link: "UI y componentes/Rotating animated navigation/index.html"
+    link: "UI y componentes/Rotating  animated navigation/index.html"
   },
   { 
     title: "E-Commerce Landing Page",
