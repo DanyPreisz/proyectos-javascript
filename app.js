@@ -310,6 +310,13 @@ const projects = [
     link: "UI y componentes/split/index.html"
   },
   { 
+    title: "Rotating / animated navigation",
+    category: "frontend",
+    description: "Rotating / animated navigation.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "UI y componentes/Rotating animated navigation/index.html"
+  },
+  { 
     title: "E-Commerce Landing Page",
     category: "frontend",
     description: "Interfaz moderna con catálogo dinámico y carrito en LocalStorage.",
