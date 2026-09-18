@@ -350,6 +350,13 @@ const projects = [
     description: "Servicio para procesar y despachar correos electrónicos en segundo plano.",
     tech: ["Python", "Flask", "Redis"],
     link: "https://github.com/tu-usuario/microservicio-emails"
+  },
+  {
+    title: "To-Do List persistente — tareas, completar, filtrar, por usuario.",
+    category: "fullstack",
+    description: "To-Do List persistente — tareas, completar, filtrar, por usuario.",
+    tech: ["JavaScript", "Node.js", "El front es HTML/CSS/JS puro; el back es Node nativo (http + crypto + SQLite)"],
+    link: "https://todo-fullstack-vanilla-6451687015.europe-west1.run.app/"
   }
 ];
 
