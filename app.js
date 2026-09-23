@@ -323,6 +323,13 @@ const projects = [
     tech: ["HTML", "CSS", "JavaScript"],
     link: "UI y componentes/landingpage/index.html"
   },  
+  {
+    title: "Dashboard de Métricas",
+    category: "frontend",
+    description: "Visualización de estadísticas en tiempo real consumiendo APIs públicas.",
+    tech: ["JavaScript", "Chart.js", "CSS Flexbox"],
+    link: "UI y componentes/Dashboard de Clima/index.html"
+  },
   { 
     title: "App con IndexedDB",
     category: "frontend",
@@ -343,14 +350,7 @@ const projects = [
     description: "Panel CRUD completo conectado a una base de datos relacional.",
     tech: ["JavaScript", "Node.js", "MySQL", "CSS Grid"],
     link: "https://github.com/tu-usuario/task-manager"
-  },
-  {
-    title: "Dashboard de Métricas",
-    category: "frontend",
-    description: "Visualización de estadísticas en tiempo real consumiendo APIs públicas.",
-    tech: ["JavaScript", "Chart.js", "CSS Flexbox"],
-    link: "UI y componentes/Dashboard de Clima/index.html"
-  },
+  },  
   {
     title: "Microservicio de Notificaciones",
     category: "backend",
