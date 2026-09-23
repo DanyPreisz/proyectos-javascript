@@ -322,6 +322,13 @@ const projects = [
     description: "Interfaz moderna con catálogo dinámico y carrito en LocalStorage.",
     tech: ["HTML", "CSS", "JavaScript"],
     link: "UI y componentes/landingpage/index.html"
+  },  
+  { 
+    title: "App con IndexedDB",
+    category: "frontend",
+    description: "App con IndexedDB.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "Producto- persistencia avanzada/indexeddb-app/index.html"
   },
   {
     title: "REST API de Autenticación",
