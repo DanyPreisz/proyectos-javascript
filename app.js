@@ -330,6 +330,14 @@ const projects = [
     tech: ["JavaScript", "Chart.js", "CSS Flexbox"],
     link: "UI y componentes/Dashboard de Clima/index.html"
   },
+  {
+    title: "Sudoku",
+    category: "frontend",
+    description: "Sudoku.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "juegos intermedios/sudoku/index.html"
+  },
+  
   { 
     title: "App con IndexedDB",
     category: "frontend",
