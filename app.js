@@ -337,6 +337,16 @@ const projects = [
     tech: ["HTML", "CSS", "JavaScript"],
     link: "Producto- persistencia avanzada/indexeddb-app/index.html"
   },
+  { 
+    title: "Web Worker para cálculos pesados",
+    category: "frontend",
+    description: "Web Worker para cálculos pesados.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    link: "Producto- persistencia avanzada/web-worker/index.html"
+  },
+  
+ 
+
   {
     title: "REST API de Autenticación",
     category: "backend",
