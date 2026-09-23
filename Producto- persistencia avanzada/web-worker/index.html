@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Worker · Vanilla JS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="page">
+      <p class="eyebrow">HTML · CSS · JS vanilla</p>
+      <h1>Web Worker</h1>
+      <p class="lede">Contar primos hasta 250000. El spinner no debería trabarse con el worker.</p>
+      <div class="spin" id="spin"></div>
+      <div class="row">
+        <button type="button" id="main">Hilo principal</button>
+        <button type="button" id="work">Worker</button>
+      </div>
+      <p class="msg" id="msg"></p>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
